@@ -231,6 +231,14 @@
   transform-origin: top;
 }
 
+.instagram-opening__media figure:nth-child(3)::after {
+  border: 0;
+}
+
+.instagram-opening__media figure:nth-child(3) .smart-video-frame {
+  inset: -1px;
+}
+
 .instagram-opening__detail-video {
   object-position: 50% 58%;
 }
