@@ -12,7 +12,7 @@ export function heroSection() {
     >
       <div class="hero__copy">
         <p class="eyebrow">Gastronomia · drinks · noite</p>
-        <h1 id="hero-title">A noite começa <em>à mesa.</em></h1>
+        <h1 id="hero-title">Uma mesa. <em>A noite inteira.</em></h1>
         <p class="hero__lead">
           Pratos, drinks e uma atmosfera feita para ficar.
         </p>

@@ -319,23 +319,19 @@ export const HOME_MEDIA = {
     {
       ...MEDIA.tableStories[2],
       copy:
-        "Texturas, aromas e sabores chegam juntos para transformar o jantar em experiência.",
+        "Do ponto certo ao último detalhe, cada prato chega à mesa com sabor, cuidado e presença.",
       support: {
         type: "sequence",
         label: "Outros pratos servidos no Via Gastrobar",
         images: [
           MEDIA.tableStories[0].main.images[2],
-          MEDIA.seaFeatured[2],
+          MEDIA.tableStories[1].support.images[1],
         ],
       },
     },
   ],
-  sea: [MEDIA.seaFeatured[0], ...MEDIA.sea],
-  seaFeatured: [
-    MEDIA.seaFeatured[1],
-    MEDIA.seaFeatured[2],
-    MEDIA.sea[0],
-  ],
+  sea: [...MEDIA.sea, ...MEDIA.seaFeatured],
+  seaFeatured: [...MEDIA.sea, ...MEDIA.seaFeatured],
   bar: MEDIA.bar,
   wine: {
     cellar: MEDIA.atmosphere.cellarDetail,

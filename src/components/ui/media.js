@@ -42,7 +42,11 @@ export function responsiveImage(image, className = "") {
 
 export function responsiveImageSequence(
   images,
-  { className = "", label = "Sequência de imagens" } = {},
+  {
+    className = "",
+    label = "Sequência de imagens",
+    offset = 0,
+  } = {},
 ) {
   const sequenceClass = `media-sequence media-sequence--${Math.min(
     images.length,
@@ -55,6 +59,7 @@ export function responsiveImageSequence(
       role="img"
       aria-label="${label}"
       data-media-sequence
+      data-sequence-offset="${offset}"
     >
       ${images
         .map((image, index) =>
@@ -66,10 +71,22 @@ export function responsiveImageSequence(
                 image.sizes ||
                 "(max-width: 560px) 88vw, (max-width: 900px) 46vw, 30vw",
             },
-            `media-sequence__item${index === 0 ? " is-sequence-current" : ""}`,
+            `media-sequence__item${
+              index === offset % images.length
+                ? " is-sequence-current"
+                : ""
+            }`,
           ).replace(
-            `class="media-sequence__item${index === 0 ? " is-sequence-current" : ""}"`,
-            `class="media-sequence__item${index === 0 ? " is-sequence-current" : ""}" aria-hidden="true"`,
+            `class="media-sequence__item${
+              index === offset % images.length
+                ? " is-sequence-current"
+                : ""
+            }"`,
+            `class="media-sequence__item${
+              index === offset % images.length
+                ? " is-sequence-current"
+                : ""
+            }" aria-hidden="true"`,
           ),
         )
         .join("")}

@@ -101,6 +101,7 @@ export function tableSection() {
           <figure class="editorial-media reveal" data-pointer-media>
             ${responsiveImageSequence(MEDIA.seaFeatured, {
               label: "Seleção de frutos do mar do Via Gastrobar",
+              offset: 2,
             })}
           </figure>
         </div>

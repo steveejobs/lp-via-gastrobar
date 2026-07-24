@@ -128,14 +128,15 @@ export function initializeMediaSequences() {
   let sequenceStep = 0;
   const showSequenceStep = (sequence, step) => {
     const items = [...sequence.querySelectorAll(".media-sequence__item")];
-    const usableItems = items.filter(
-      (item) => item.complete && item.naturalWidth > 0,
-    );
-    if (!usableItems.length) return;
+    if (!items.length) return;
 
-    const nextIndex = step % usableItems.length;
+    const offset = Number(sequence.dataset.sequenceOffset || 0);
+    const nextIndex = (step + offset) % items.length;
+    const nextItem = items[nextIndex];
+    if (!nextItem.complete || nextItem.naturalWidth === 0) return;
+
     items.forEach((item) => item.classList.remove("is-sequence-current"));
-    usableItems[nextIndex].classList.add("is-sequence-current");
+    nextItem.classList.add("is-sequence-current");
   };
 
   const updateSequence = (sequence) => {
