@@ -188,9 +188,14 @@
   }
 
   .hero__facts {
+    grid-template-columns: 1fr;
     max-width: 520px;
     margin-top: 1rem;
     padding-top: 0.8rem;
+  }
+
+  .hero__facts > div:nth-child(2) {
+    display: none;
   }
 
   .hero-stage {
@@ -241,10 +246,6 @@
   .hero__facts {
     grid-template-columns: 1fr;
     gap: 0.8rem;
-  }
-
-  .hero__facts > div:nth-child(2) {
-    display: none;
   }
 
   .hero-stage {

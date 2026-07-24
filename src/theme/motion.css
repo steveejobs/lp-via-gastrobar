@@ -89,7 +89,7 @@
 }
 
 .atmosphere-composition__detail.is-visible,
-.bar-composition__wine.is-visible {
+.bar-composition__detail-video.is-visible {
   transition-delay: 280ms;
 }
 
@@ -266,7 +266,7 @@ html.is-leaving [data-page] {
 }
 
 [data-page="home"] .atmosphere-composition__detail.is-before,
-[data-page="home"] .bar-composition__wine.is-before {
+[data-page="home"] .bar-composition__detail-video.is-before {
   transform: translate3d(34px, 18px, 0) scale(0.965);
 }
 

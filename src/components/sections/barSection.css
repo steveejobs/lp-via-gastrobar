@@ -15,11 +15,11 @@
 
 .bar-composition__video {
   grid-row: 1 / -1;
-  background: var(--color-wood-900);
+  background: transparent;
 }
 
 .bar-composition__video .smart-video-frame {
-  background: var(--color-wood-900);
+  background: transparent;
 }
 
 .bar-composition__video::before {
@@ -38,16 +38,24 @@
   grid-row: 1;
 }
 
-.bar-composition__wine {
+.bar-composition__detail-video {
   grid-column: 3;
   grid-row: 2;
-  background: var(--color-wood-900);
+  background: transparent;
+}
+
+.bar-composition__detail-video .smart-video-frame {
+  background: transparent;
 }
 
 .bar-composition img,
 .bar-composition video {
-  object-fit: contain;
-  background: var(--color-wood-900);
+  object-fit: cover;
+  background: transparent;
+}
+
+.bar-composition .editorial-media {
+  background: transparent;
 }
 
 .bar-composition__copy {
@@ -86,7 +94,7 @@
     grid-row: 1;
   }
 
-  .bar-composition__wine {
+  .bar-composition__detail-video {
     grid-column: 2;
     grid-row: 2;
   }

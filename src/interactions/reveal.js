@@ -125,20 +125,15 @@ export function initializeMediaSequences() {
   if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
 
   const visibleSequences = new Set();
-  const advanceSequence = (sequence) => {
+  let sequenceStep = 0;
+  const showSequenceStep = (sequence, step) => {
     const items = [...sequence.querySelectorAll(".media-sequence__item")];
     const usableItems = items.filter(
       (item) => item.complete && item.naturalWidth > 0,
     );
-    if (usableItems.length < 2) return;
+    if (!usableItems.length) return;
 
-    const currentIndex = Math.max(
-      0,
-      usableItems.findIndex((item) =>
-        item.classList.contains("is-sequence-current"),
-      ),
-    );
-    const nextIndex = (currentIndex + 1) % usableItems.length;
+    const nextIndex = step % usableItems.length;
     items.forEach((item) => item.classList.remove("is-sequence-current"));
     usableItems[nextIndex].classList.add("is-sequence-current");
   };
@@ -153,8 +148,12 @@ export function initializeMediaSequences() {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) visibleSequences.add(entry.target);
-        else visibleSequences.delete(entry.target);
+        if (entry.isIntersecting) {
+          visibleSequences.add(entry.target);
+          showSequenceStep(entry.target, sequenceStep);
+        } else {
+          visibleSequences.delete(entry.target);
+        }
         updateSequence(entry.target);
       });
     },
@@ -188,7 +187,10 @@ export function initializeMediaSequences() {
   });
   window.setInterval(() => {
     if (document.hidden) return;
-    visibleSequences.forEach(advanceSequence);
+    sequenceStep += 1;
+    visibleSequences.forEach((sequence) =>
+      showSequenceStep(sequence, sequenceStep),
+    );
   }, 6000);
 
   document.addEventListener("visibilitychange", () => {

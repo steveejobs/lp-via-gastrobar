@@ -207,6 +207,7 @@ export const MEDIA = {
   ],
   bar: {
     video: "/media/drink-prep.mp4",
+    champagneVideo: "/media/drink-champagne.mp4",
     poster: "/media/drink-prep-poster.webp",
     detailVideo: "/media/drink-orange.mp4",
     detailPoster: "/media/drink-orange-poster.jpg",
@@ -291,7 +292,17 @@ export const HOME_MEDIA = {
     cellar: MEDIA.atmosphere.cellar,
   },
   tableStories: [
-    MEDIA.tableStories[0],
+    {
+      ...MEDIA.tableStories[0],
+      main: {
+        type: "image",
+        image: MEDIA.tableStories[0].main.images[0],
+      },
+      support: {
+        type: "image",
+        image: MEDIA.tableStories[0].main.images[1],
+      },
+    },
     {
       id: "ritmo",
       index: "02",
@@ -319,8 +330,12 @@ export const HOME_MEDIA = {
       },
     },
   ],
-  sea: [...MEDIA.sea, MEDIA.seaFeatured[1]],
-  seaFeatured: MEDIA.seaFeatured,
+  sea: [MEDIA.seaFeatured[0], ...MEDIA.sea],
+  seaFeatured: [
+    MEDIA.seaFeatured[1],
+    MEDIA.seaFeatured[2],
+    MEDIA.sea[0],
+  ],
   bar: MEDIA.bar,
   wine: {
     cellar: MEDIA.atmosphere.cellarDetail,

@@ -24,9 +24,8 @@ export function barSection() {
           data-pointer-media
         >
           ${smartVideo({
-            src: MEDIA.bar.video,
-            playlist: [MEDIA.bar.video, MEDIA.bar.detailVideo],
-            label: "Preparo de drink no Via Gastrobar",
+            src: MEDIA.bar.champagneVideo,
+            label: "Champagne servido no Via Gastrobar",
           })}
         </figure>
         <figure class="bar-composition__drink editorial-media reveal" data-pointer-media>
@@ -34,9 +33,10 @@ export function barSection() {
             label: "Drinks servidos no Via Gastrobar",
           })}
         </figure>
-        <figure class="bar-composition__wine editorial-media reveal">
-          ${responsiveImageSequence(MEDIA.bar.wines, {
-            label: "Vinhos servidos no Via Gastrobar",
+        <figure class="bar-composition__detail-video editorial-media reveal">
+          ${smartVideo({
+            src: MEDIA.bar.detailVideo,
+            label: "Drinks preparados no Via Gastrobar",
           })}
         </figure>
         <div class="bar-composition__copy reveal">

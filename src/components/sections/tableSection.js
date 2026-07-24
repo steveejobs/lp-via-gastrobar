@@ -1,6 +1,7 @@
 import { HOME_MEDIA as MEDIA, SITE } from "../../data/site.js";
 import { externalAttributes, icons } from "../ui/icons.js";
 import {
+  responsiveImage,
   responsiveImageSequence,
   smartVideo,
 } from "../ui/media.js";
@@ -18,6 +19,10 @@ function storyMedia(media) {
     return responsiveImageSequence(media.images, {
       label: media.label,
     });
+  }
+
+  if (media.type === "image") {
+    return responsiveImage(media.image);
   }
 
   return "";
