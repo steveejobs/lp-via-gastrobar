@@ -71,6 +71,18 @@
   animation: hero-detail-in 720ms var(--ease-editorial) 720ms both;
 }
 
+.is-ready [data-page="home"] .hero-stage__service {
+  animation: hero-video-in 1250ms var(--ease-editorial) 120ms both;
+}
+
+.is-ready [data-page="home"] .hero-stage__room {
+  animation: hero-image-in 950ms var(--ease-editorial) 420ms both;
+}
+
+.is-ready [data-page="home"] .hero-stage__salon {
+  animation: hero-image-in 950ms var(--ease-editorial) 580ms both;
+}
+
 .atmosphere-composition__support.is-visible,
 .bar-composition__drink.is-visible {
   transition-delay: 140ms;
@@ -156,6 +168,30 @@
   from {
     opacity: 0.2;
     transform: translate3d(0, 82%, 0) rotate(1.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-video-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.985);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes hero-image-in {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0) scale(0.98);
   }
   to {
     opacity: 1;

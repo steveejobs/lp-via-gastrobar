@@ -16,6 +16,9 @@ export function responsiveImage(image, className = "") {
   const loading = image.loading || "lazy";
   const fetchPriority =
     image.fetchPriority || (loading === "eager" ? "high" : "auto");
+  const fallback = image.fallbackSrc
+    ? `onerror="this.onerror=null; this.removeAttribute('srcset'); this.src='${image.fallbackSrc}'"`
+    : "";
 
   return `
     <img
@@ -31,6 +34,7 @@ export function responsiveImage(image, className = "") {
       loading="${loading}"
       fetchpriority="${fetchPriority}"
       decoding="async"
+      ${fallback}
       alt="${image.alt}"
     />
   `;

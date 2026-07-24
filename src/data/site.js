@@ -74,6 +74,7 @@ export const MEDIA = {
       width: 2346,
       height: 1320,
       alt: "Seleção de vinhos da adega do Via Gastrobar",
+      fallbackSrc: "/media/ambient-wine-wall.webp",
     },
   },
   tableStories: [
@@ -103,6 +104,7 @@ export const MEDIA = {
             width: 1320,
             height: 2346,
             alt: "Prato de carne servido com acompanhamentos",
+            fallbackSrc: "/media/plate-steak-close.webp",
           },
         ],
       },
@@ -186,18 +188,21 @@ export const MEDIA = {
       width: 1080,
       height: 1919,
       alt: "Prato de lagosta servido no Via Gastrobar",
+      fallbackSrc: "/media/plate-lobster.webp",
     },
     {
       src: "/media/sea-special-02.jpg",
       width: 1080,
       height: 1919,
       alt: "Camarões preparados no Via Gastrobar",
+      fallbackSrc: "/media/plate-octopus.webp",
     },
     {
       src: "/media/sea-special-03.jpg",
       width: 1080,
       height: 1919,
       alt: "Prato crocante de frutos do mar",
+      fallbackSrc: "/media/plate-lobster.webp",
     },
   ],
   bar: {

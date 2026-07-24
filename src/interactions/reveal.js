@@ -127,17 +127,20 @@ export function initializeMediaSequences() {
   const visibleSequences = new Set();
   const advanceSequence = (sequence) => {
     const items = [...sequence.querySelectorAll(".media-sequence__item")];
-    if (items.length < 2) return;
+    const usableItems = items.filter(
+      (item) => item.complete && item.naturalWidth > 0,
+    );
+    if (usableItems.length < 2) return;
 
     const currentIndex = Math.max(
       0,
-      items.findIndex((item) =>
+      usableItems.findIndex((item) =>
         item.classList.contains("is-sequence-current"),
       ),
     );
-    const nextIndex = (currentIndex + 1) % items.length;
-    items[currentIndex].classList.remove("is-sequence-current");
-    items[nextIndex].classList.add("is-sequence-current");
+    const nextIndex = (currentIndex + 1) % usableItems.length;
+    items.forEach((item) => item.classList.remove("is-sequence-current"));
+    usableItems[nextIndex].classList.add("is-sequence-current");
   };
 
   const updateSequence = (sequence) => {
@@ -158,7 +161,31 @@ export function initializeMediaSequences() {
     { rootMargin: "120px 0px", threshold: 0.08 },
   );
 
-  sequences.forEach((sequence) => observer.observe(sequence));
+  sequences.forEach((sequence) => {
+    const items = [...sequence.querySelectorAll(".media-sequence__item")];
+    items.forEach((item) => {
+      item.addEventListener("error", () => {
+        item.classList.remove("is-sequence-current");
+        const fallback = items.find(
+          (candidate) =>
+            candidate !== item &&
+            candidate.complete &&
+            candidate.naturalWidth > 0,
+        );
+        fallback?.classList.add("is-sequence-current");
+      });
+      item.addEventListener("load", () => {
+        if (
+          !items.some((candidate) =>
+            candidate.classList.contains("is-sequence-current"),
+          )
+        ) {
+          item.classList.add("is-sequence-current");
+        }
+      });
+    });
+    observer.observe(sequence);
+  });
   window.setInterval(() => {
     if (document.hidden) return;
     visibleSequences.forEach(advanceSequence);
