@@ -70,6 +70,7 @@ export function responsiveImageSequence(
 
 export function smartVideo({
   src,
+  playlist = [],
   poster,
   label,
   className = "",
@@ -82,6 +83,10 @@ export function smartVideo({
   loopEnd,
 }) {
   const source = eager ? `src="${src}"` : `data-src="${src}"`;
+  const playlistAttribute =
+    playlist.length > 1
+      ? `data-video-playlist="${playlist.join("|")}"`
+      : "";
   const segment =
     loopEnd !== undefined
       ? `data-loop-start="${loopStart || 0}" data-loop-end="${loopEnd}"`
@@ -128,6 +133,7 @@ export function smartVideo({
         muted
         playsinline
         ${source}
+        ${playlistAttribute}
         ${segment}
         preload="${preload}"
         ${poster ? `poster="${poster}"` : ""}

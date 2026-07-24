@@ -103,6 +103,10 @@ export const MEDIA = {
       main: {
         type: "video",
         src: "/media/plate-lamb-prep.mp4",
+        playlist: [
+          "/media/plate-lamb-prep.mp4",
+          "/media/plate-service.mp4",
+        ],
         poster: "/media/plate-lamb-prep-poster.webp",
         label: "Preparo de um prato do Via Gastrobar",
       },

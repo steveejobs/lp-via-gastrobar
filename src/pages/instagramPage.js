@@ -185,16 +185,14 @@ export function instagramPage() {
               <figure class="instagram-night__main" data-parallax="13">
                 ${smartVideo({
                   src: MEDIA.tableStories[1].main.src,
+                  playlist: MEDIA.tableStories[1].main.playlist,
                   poster: MEDIA.tableStories[1].main.poster,
                   label: MEDIA.tableStories[1].main.label,
                   className: "instagram-night__video",
                   preload: "metadata",
                   posterWidth: 720,
                   posterSizes: "min(52vw, 270px)",
-                  loopStart: 0.2,
-                  loopEnd: 10.5,
                 })}
-                <figcaption>Do fogo à mesa</figcaption>
               </figure>
               <figure aria-label="Detalhes da experiência" data-parallax="-8">
                 ${imageCycle([
@@ -300,7 +298,6 @@ export function instagramPage() {
               loopEnd: 12,
             })}
             <div class="instagram-closing__content" data-instagram-reveal="up">
-              <p class="eyebrow">Sua mesa</p>
               <h2 id="instagram-closing-title">A noite está a uma mensagem de distância.</h2>
               <a
                 class="instagram-closing__button"

@@ -4,6 +4,37 @@ export function initializeVideos() {
 
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const visibleVideos = new Set();
+  const playlists = new WeakMap();
+  const playlistPreloads = new WeakMap();
+
+  const getPlaylist = (video) => {
+    if (!playlists.has(video)) {
+      const sources = (video.dataset.videoPlaylist || "")
+        .split("|")
+        .filter(Boolean);
+      playlists.set(video, sources);
+    }
+    return playlists.get(video);
+  };
+
+  const preloadNext = (video) => {
+    const playlist = getPlaylist(video);
+    if (playlist.length < 2 || navigator.connection?.saveData) return;
+
+    const currentIndex = Number(video.dataset.playlistIndex || 0);
+    const nextSrc = playlist[(currentIndex + 1) % playlist.length];
+    const previousPreload = playlistPreloads.get(video);
+
+    if (previousPreload?.src.endsWith(nextSrc)) return;
+
+    const preload = document.createElement("video");
+    preload.muted = true;
+    preload.playsInline = true;
+    preload.preload = "auto";
+    preload.src = nextSrc;
+    preload.load();
+    playlistPreloads.set(video, preload);
+  };
 
   const load = (video) => {
     if (!video.dataset.src || video.src) return;
@@ -12,6 +43,7 @@ export function initializeVideos() {
     video.src = video.dataset.src;
     video.removeAttribute("data-src");
     video.load();
+    preloadNext(video);
   };
 
   const resetSegment = (video) => {
@@ -55,8 +87,28 @@ export function initializeVideos() {
   );
 
   videos.forEach((video) => {
+    const playlist = getPlaylist(video);
+    if (playlist.length > 1) {
+      const initialSource = video.dataset.src || video.getAttribute("src");
+      const initialIndex = Math.max(0, playlist.indexOf(initialSource));
+      video.dataset.playlistIndex = String(initialIndex);
+      if (video.src) preloadNext(video);
+    }
+
     video.addEventListener("timeupdate", () => resetSegment(video));
     video.addEventListener("ended", () => {
+      const videoPlaylist = getPlaylist(video);
+      if (videoPlaylist.length > 1) {
+        const currentIndex = Number(video.dataset.playlistIndex || 0);
+        const nextIndex = (currentIndex + 1) % videoPlaylist.length;
+        video.dataset.playlistIndex = String(nextIndex);
+        video.src = videoPlaylist[nextIndex];
+        video.load();
+        preloadNext(video);
+        updatePlayback();
+        return;
+      }
+
       video.currentTime = Number(video.dataset.loopStart || 0);
       updatePlayback();
     });
