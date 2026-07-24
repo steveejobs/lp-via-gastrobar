@@ -1,6 +1,5 @@
 node_modules/
 dist/
-hero-prototype/
 /*.jpg
 /*.mp4
 /public/media/*.jpg

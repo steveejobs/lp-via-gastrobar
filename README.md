@@ -42,23 +42,8 @@ src/data/         fonte única de dados e inventário publicado
 src/interactions/ navegação, motion, vídeo e pointer
 src/pages/        home e rota /instagram
 src/theme/        tokens e tema visual centralizado
-tools/            auditoria, inventário e otimização de mídia
 vercel.json       rotas e cache no Vercel
 ```
 
 Os arquivos originais da galeria continuam preservados na raiz, mas são
 ignorados no upload pelo `.vercelignore`.
-
-## Auditoria e contexto
-
-- `PROJECT_CONTEXT.md`: decisões, arquitetura e estado do projeto.
-- `docs/AUDITORIA_PROFISSIONAL.md`: auditoria visual, estratégica, técnica e
-  plano de implementação.
-- `docs/INSTAGRAM.md`: direção, referências e QA da rota mobile `/instagram`.
-
-```bash
-npm run audit:media
-npm run audit:visual
-npm run audit:instagram
-python tools/optimize_images.py --help
-```
