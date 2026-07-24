@@ -136,6 +136,8 @@
 .instagram-hero__video .smart-video-frame {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transform: scale(1.025);
   background: var(--color-green-800);
 }
 
@@ -144,8 +146,8 @@
   object-position: center;
 }
 
-.is-ready .instagram-hero__video {
-  animation: instagram-video-in 1900ms var(--ease-editorial) 160ms both;
+.is-ready .instagram-hero__video .smart-video-frame.is-video-playing {
+  animation: instagram-hero-video-in 1500ms var(--ease-editorial) both;
 }
 
 .instagram-opening {
@@ -928,6 +930,17 @@
   }
 }
 
+@keyframes instagram-hero-video-in {
+  from {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes instagram-image-left {
   from {
     opacity: 0;
@@ -1043,5 +1056,14 @@
   [data-parallax] .instagram-cycle,
   [data-parallax] > .smart-video-frame {
     transform: none;
+  }
+
+  .instagram-hero__video .smart-video-frame {
+    transform: none;
+  }
+
+  .instagram-hero__video .smart-video-frame.is-video-playing {
+    opacity: 1;
+    animation: none;
   }
 }

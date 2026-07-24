@@ -33,6 +33,22 @@ export function initializeInstagramPage() {
   updateDock();
   window.addEventListener("scroll", updateDock, { passive: true });
 
+  const heroVideo = document.querySelector(".instagram-opening__video");
+  const heroVideoFrame = heroVideo?.closest(".smart-video-frame");
+  const revealHeroVideo = () => {
+    const reveal = () => {
+      heroVideoFrame?.classList.add("is-video-playing");
+      heroVideo?.removeAttribute("poster");
+    };
+
+    if ("requestVideoFrameCallback" in heroVideo) {
+      heroVideo.requestVideoFrameCallback(reveal);
+    } else {
+      requestAnimationFrame(reveal);
+    }
+  };
+
+  heroVideo?.addEventListener("playing", revealHeroVideo, { once: true });
   initializeVideos();
 
   const revealItems = [...document.querySelectorAll("[data-instagram-reveal]")];
