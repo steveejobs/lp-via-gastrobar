@@ -5,7 +5,7 @@ import { smartVideo } from "../ui/media.js";
 export function visitSection() {
   return `
     <section class="visit-section chapter" id="localizacao" aria-labelledby="visit-title">
-      <div class="visit-section__media">
+      <div class="visit-section__media reveal">
         ${smartVideo({
           src: MEDIA.closing.video,
           poster: MEDIA.closing.poster,
@@ -13,12 +13,9 @@ export function visitSection() {
           posterSizes: "(max-width: 900px) 100vw, 50vw",
           label: "Vista do local do Via Gastrobar",
         })}
-        <div class="visit-section__media-copy" aria-hidden="true">
-          <span>A noite continua</span>
-        </div>
       </div>
 
-      <div class="visit-section__content">
+      <div class="visit-section__content reveal">
         <p class="eyebrow">Reserva & localização</p>
         <h2 id="visit-title">Sua mesa está a uma mensagem de distância.</h2>
 

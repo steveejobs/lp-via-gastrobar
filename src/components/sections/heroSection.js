@@ -1,6 +1,6 @@
 import { HOME_MEDIA as MEDIA, SITE } from "../../data/site.js";
 import { externalAttributes, icons } from "../ui/icons.js";
-import { responsiveImage, smartVideo } from "../ui/media.js";
+import { responsiveImageSequence, smartVideo } from "../ui/media.js";
 
 export function heroSection() {
   return `
@@ -64,15 +64,16 @@ export function heroSection() {
             loopStart: 0.15,
             loopEnd: 6.4,
           })}
-          <figcaption>O primeiro serviço</figcaption>
         </figure>
         <figure class="hero-stage__room">
-          ${responsiveImage(MEDIA.hero.room)}
-          <figcaption>O bar espera</figcaption>
+          ${responsiveImageSequence(MEDIA.hero.room, {
+            label: "Bar e adega do Via Gastrobar",
+          })}
         </figure>
         <figure class="hero-stage__salon">
-          ${responsiveImage(MEDIA.hero.salon)}
-          <figcaption>Para chegar sem pressa</figcaption>
+          ${responsiveImageSequence(MEDIA.hero.salon, {
+            label: "Salão e mesas do Via Gastrobar",
+          })}
         </figure>
       </div>
 

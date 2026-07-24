@@ -46,7 +46,12 @@ export function responsiveImageSequence(
   )} ${className}`.trim();
 
   return `
-    <span class="${sequenceClass}" role="img" aria-label="${label}">
+    <span
+      class="${sequenceClass}"
+      role="img"
+      aria-label="${label}"
+      data-media-sequence
+    >
       ${images
         .map((image, index) =>
           responsiveImage(

@@ -33,28 +33,6 @@
   background: linear-gradient(to top, rgba(22, 11, 8, 0.55), transparent 50%);
 }
 
-.visit-section__media-copy {
-  position: absolute;
-  z-index: 3;
-  right: 2rem;
-  bottom: 2rem;
-  left: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: rgba(255, 249, 239, 0.75);
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.visit-section__media-copy::before {
-  content: "";
-  width: 48px;
-  height: 1px;
-  background: var(--color-gold-500);
-}
-
 .visit-section__content {
   display: flex;
   flex-direction: column;

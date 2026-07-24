@@ -1,24 +1,39 @@
 import { HOME_MEDIA as MEDIA, SITE } from "../../data/site.js";
 import { externalAttributes, icons } from "../ui/icons.js";
-import { responsiveImage, smartVideo } from "../ui/media.js";
+import {
+  responsiveImageSequence,
+  smartVideo,
+} from "../ui/media.js";
 
 function storyMedia(media) {
   if (media.type === "video") {
     return smartVideo({
       src: media.src,
+      playlist: media.playlist,
       poster: media.poster,
       label: media.label,
     });
   }
 
-  return responsiveImage(media);
+  if (media.type === "sequence") {
+    return responsiveImageSequence(media.images, {
+      label: media.label,
+    });
+  }
+
+  return "";
 }
 
 function tableStory(story, index) {
   const reverse = index % 2 === 1 ? " table-story--reverse" : "";
   const video = story.main.type === "video" ? " table-story--video" : "";
+  const solo = story.support ? "" : " table-story--solo";
   return `
-    <article class="table-story${reverse}${video} reveal" data-chapter-media>
+    <article
+      class="table-story${reverse}${video}${solo} reveal"
+      data-chapter-media
+      data-story="${story.id}"
+    >
       <div class="table-story__copy">
         <span>${story.index}</span>
         <h3>${story.title}</h3>
@@ -27,13 +42,18 @@ function tableStory(story, index) {
       <figure
         class="table-story__main editorial-media"
         data-pointer-media
-        data-cursor-label="servir"
       >
         ${storyMedia(story.main)}
       </figure>
-      <figure class="table-story__support editorial-media">
-        ${responsiveImage(story.support)}
-      </figure>
+      ${
+        story.support
+          ? `
+            <figure class="table-story__support editorial-media">
+              ${storyMedia(story.support)}
+            </figure>
+          `
+          : ""
+      }
     </article>
   `;
 }
@@ -69,15 +89,11 @@ export function tableSection() {
           </a>
         </div>
         <div class="sea-note__media">
-          ${MEDIA.sea
-            .map(
-              (image) => `
-                <figure class="editorial-media" data-pointer-media>
-                  ${responsiveImage(image)}
-                </figure>
-              `,
-            )
-            .join("")}
+          <figure class="editorial-media reveal" data-pointer-media>
+            ${responsiveImageSequence(MEDIA.sea, {
+              label: "Pratos do mar servidos no Via Gastrobar",
+            })}
+          </figure>
         </div>
       </section>
     </section>

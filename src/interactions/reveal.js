@@ -64,56 +64,87 @@ export function prepareTextMotion() {
 export function initializeReveals() {
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const items = [...document.querySelectorAll(".reveal")];
-  if (!items.length || reducedMotion.matches || !("IntersectionObserver" in window)) {
+  if (
+    !items.length ||
+    reducedMotion.matches ||
+    !("IntersectionObserver" in window)
+  ) {
     items.forEach((item) => item.classList.add("is-visible"));
     return;
   }
 
-  items.forEach((item) => {
-    if (item.getBoundingClientRect().top > window.innerHeight * 0.92) {
-      item.classList.add("will-reveal");
-    } else {
-      item.classList.add("is-visible");
-    }
-  });
-
-  const pendingItems = new Set(
-    items.filter((item) => item.classList.contains("will-reveal")),
-  );
-  let fallbackFrame = 0;
-  let observer;
-
-  const revealItem = (item) => {
-    item.classList.add("is-visible");
-    item.classList.remove("will-reveal");
-    pendingItems.delete(item);
-    observer?.unobserve(item);
+  const setState = (item, state) => {
+    item.classList.toggle("is-visible", state === "visible");
+    item.classList.toggle("is-before", state === "before");
+    item.classList.toggle("is-after", state === "after");
+    item.classList.toggle("will-reveal", state === "before");
   };
 
-  observer = new IntersectionObserver(
+  const stateFromBounds = (bounds) => {
+    if (bounds.bottom <= window.innerHeight * 0.08) return "after";
+    if (bounds.top >= window.innerHeight * 0.92) return "before";
+    return "visible";
+  };
+
+  items.forEach((item) => {
+    setState(item, stateFromBounds(item.getBoundingClientRect()));
+  });
+
+  const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
-          revealItem(entry.target);
-        }
+        const state = entry.isIntersecting
+          ? "visible"
+          : stateFromBounds(entry.boundingClientRect);
+        setState(entry.target, state);
       });
     },
-    { rootMargin: "0px 0px -5% 0px", threshold: 0.05 },
+    {
+      rootMargin: "-8% 0px -8% 0px",
+      threshold: [0, 0.08, 0.3],
+    },
   );
 
-  pendingItems.forEach((item) => observer.observe(item));
+  items.forEach((item) => observer.observe(item));
 
-  const revealPassedItems = () => {
-    window.cancelAnimationFrame(fallbackFrame);
-    fallbackFrame = window.requestAnimationFrame(() => {
-      pendingItems.forEach((item) => {
-        if (item.getBoundingClientRect().top < window.innerHeight * 0.94) {
-          revealItem(item);
-        }
-      });
+  const restoreStates = () => {
+    items.forEach((item) => {
+      setState(item, stateFromBounds(item.getBoundingClientRect()));
     });
   };
 
-  window.addEventListener("scroll", revealPassedItems, { passive: true });
-  window.addEventListener("resize", revealPassedItems, { passive: true });
+  window.addEventListener("pageshow", restoreStates);
+  window.addEventListener("resize", restoreStates, { passive: true });
+}
+
+export function initializeMediaSequences() {
+  const sequences = [...document.querySelectorAll("[data-media-sequence]")];
+  if (!sequences.length) return;
+
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
+
+  const visibleSequences = new Set();
+  const updateSequence = (sequence) => {
+    sequence.classList.toggle(
+      "is-sequence-active",
+      visibleSequences.has(sequence) && !document.hidden,
+    );
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visibleSequences.add(entry.target);
+        else visibleSequences.delete(entry.target);
+        updateSequence(entry.target);
+      });
+    },
+    { rootMargin: "120px 0px", threshold: 0.08 },
+  );
+
+  sequences.forEach((sequence) => observer.observe(sequence));
+  document.addEventListener("visibilitychange", () => {
+    sequences.forEach(updateSequence);
+  });
 }
