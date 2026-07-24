@@ -64,28 +64,28 @@ export function instagramPage() {
     <div data-page="instagram">
       <main id="conteudo" class="instagram-page">
         <div class="instagram-canvas">
-          <header class="instagram-profile" data-instagram-intro>
-            <a class="instagram-profile__logo" href="/" aria-label="Via Gastrobar, site completo">
-              <img
-                src="${MEDIA.logo.src}"
-                width="${MEDIA.logo.width}"
-                height="${MEDIA.logo.height}"
-                alt="Via Gastrobar"
-              />
-            </a>
-            <p class="instagram-profile__handle">${SITE.instagramHandle}</p>
-            <h1>A noite começa à mesa.</h1>
-            <p class="instagram-profile__lead">
-              Pratos, drinks e uma atmosfera feita para ficar.
-            </p>
-            <div class="instagram-profile__status" data-instagram-status>
-              <span data-instagram-status-dot aria-hidden="true"></span>
-              ${SITE.hours}
-            </div>
-          </header>
+          <section class="instagram-hero" aria-label="Apresentação do Via Gastrobar">
+            <header class="instagram-profile" data-instagram-intro>
+              <a class="instagram-profile__logo" href="/" aria-label="Via Gastrobar, site completo">
+                <img
+                  src="${MEDIA.logo.src}"
+                  width="${MEDIA.logo.width}"
+                  height="${MEDIA.logo.height}"
+                  alt="Via Gastrobar"
+                />
+              </a>
+              <p class="instagram-profile__handle">${SITE.instagramHandle}</p>
+              <h1>A noite começa à mesa.</h1>
+              <p class="instagram-profile__lead">
+                Pratos, drinks e uma atmosfera feita para ficar.
+              </p>
+              <div class="instagram-profile__status" data-instagram-status>
+                <span data-instagram-status-dot aria-hidden="true"></span>
+                ${SITE.hours}
+              </div>
+            </header>
 
-          <section class="instagram-opening" aria-label="Uma prévia em movimento do Via Gastrobar">
-            <figure class="instagram-opening__main" data-parallax="10">
+            <figure class="instagram-hero__video">
               ${smartVideo({
                 src: MEDIA.hero.video,
                 poster: MEDIA.hero.poster,
@@ -100,62 +100,80 @@ export function instagramPage() {
                 loopEnd: 11.8,
               })}
             </figure>
-            <figure aria-label="Drinks do Via Gastrobar" data-parallax="-7">
-              ${imageCycle(
-                [
-                  ...MEDIA.bar.drinks,
-                  MEDIA.bar.wines[2],
-                ],
-                { eager: true },
-              )}
-            </figure>
-            <figure aria-label="Pratos do Via Gastrobar" data-parallax="7">
-              ${imageCycle(
-                [
-                  MEDIA.tableStories[0].main.images[0],
-                  MEDIA.tableStories[2].main.images[0],
-                  ...MEDIA.sea,
-                ],
-                { eager: true },
-              )}
-            </figure>
           </section>
 
-          <nav class="instagram-actions" aria-label="Ações principais">
-            ${externalAction({
-              className: "instagram-action--primary",
-              href: SITE.links.whatsapp,
-              icon: icons.whatsapp,
-              title: "Reservar mesa",
-              meta: "Falar pelo WhatsApp",
-              label: "Reservar mesa pelo WhatsApp",
-              track: "hero_reserva",
-            })}
-            ${externalAction({
-              href: SITE.links.maps,
-              icon: icons.map,
-              title: "Traçar rota",
-              meta: "Abrir no Google Maps",
-              label: "Traçar rota no Google Maps",
-              track: "rota",
-            })}
-            ${externalAction({
-              href: SITE.links.instagram,
-              icon: icons.instagram,
-              title: "Ver Instagram",
-              meta: SITE.instagramHandle,
-              label: "Abrir Instagram do Via Gastrobar",
-              track: "instagram",
-            })}
-            <a class="instagram-action" href="/">
-              <span class="instagram-action__icon">${icons.home}</span>
-              <span class="instagram-action__copy">
-                <strong>Ver experiência completa</strong>
-                <small>Conheça o Via</small>
-              </span>
-              <span class="instagram-action__arrow">${icons.arrow}</span>
-            </a>
-          </nav>
+          <section class="instagram-opening" aria-label="Ações e detalhes do Via Gastrobar">
+            <nav class="instagram-actions" aria-label="Ações principais">
+              ${externalAction({
+                className: "instagram-action--primary",
+                href: SITE.links.whatsapp,
+                icon: icons.whatsapp,
+                title: "Reservar mesa",
+                meta: "Falar pelo WhatsApp",
+                label: "Reservar mesa pelo WhatsApp",
+                track: "hero_reserva",
+              })}
+              ${externalAction({
+                href: SITE.links.maps,
+                icon: icons.map,
+                title: "Traçar rota",
+                meta: "Abrir no Google Maps",
+                label: "Traçar rota no Google Maps",
+                track: "rota",
+              })}
+              ${externalAction({
+                href: SITE.links.instagram,
+                icon: icons.instagram,
+                title: "Ver Instagram",
+                meta: SITE.instagramHandle,
+                label: "Abrir Instagram do Via Gastrobar",
+                track: "instagram",
+              })}
+              <a class="instagram-action" href="/">
+                <span class="instagram-action__icon">${icons.home}</span>
+                <span class="instagram-action__copy">
+                  <strong>Ver experiência completa</strong>
+                  <small>Conheça o Via</small>
+                </span>
+                <span class="instagram-action__arrow">${icons.arrow}</span>
+              </a>
+            </nav>
+
+            <div class="instagram-opening__media" aria-hidden="true">
+              <figure>
+                ${imageCycle(
+                  [
+                    ...MEDIA.bar.drinks,
+                    MEDIA.bar.wines[2],
+                  ],
+                  { eager: true },
+                )}
+              </figure>
+              <figure>
+                ${imageCycle(
+                  [
+                    MEDIA.tableStories[0].main.images[0],
+                    MEDIA.tableStories[2].main.images[0],
+                    ...MEDIA.sea,
+                  ],
+                  { eager: true },
+                )}
+              </figure>
+              <figure>
+                ${smartVideo({
+                  src: MEDIA.bar.video,
+                  poster: MEDIA.bar.poster,
+                  label: "Preparo de um drink no Via Gastrobar",
+                  className: "instagram-opening__detail-video",
+                  preload: "metadata",
+                  posterWidth: 720,
+                  posterSizes: "min(30vw, 150px)",
+                  loopStart: 0.2,
+                  loopEnd: 10,
+                })}
+              </figure>
+            </div>
+          </section>
 
           <section class="instagram-motion-rail" aria-hidden="true">
             <div class="instagram-motion-rail__track">
