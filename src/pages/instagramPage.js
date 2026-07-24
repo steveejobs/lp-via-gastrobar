@@ -28,9 +28,9 @@ function motionRailImage(image) {
   return responsiveImage({
     ...image,
     alt: "",
-    loading: "lazy",
-    fetchPriority: "auto",
-    sizes: "150px",
+    loading: "eager",
+    fetchPriority: "low",
+    sizes: "190px",
   });
 }
 
@@ -161,38 +161,17 @@ export function instagramPage() {
               </figure>
               <figure>
                 ${smartVideo({
-                  src: MEDIA.bar.video,
-                  poster: MEDIA.bar.poster,
-                  label: "Preparo de um drink no Via Gastrobar",
+                  src: MEDIA.bar.detailVideo,
+                  poster: MEDIA.bar.detailPoster,
+                  label: "Dois drinks servidos no Via Gastrobar",
                   className: "instagram-opening__detail-video",
                   preload: "metadata",
                   posterWidth: 720,
                   posterSizes: "min(30vw, 150px)",
-                  loopStart: 0.2,
-                  loopEnd: 10,
+                  loopStart: 0.3,
+                  loopEnd: 7.4,
                 })}
               </figure>
-            </div>
-          </section>
-
-          <section class="instagram-motion-rail" aria-hidden="true">
-            <div class="instagram-motion-rail__track">
-              ${[
-                MEDIA.atmosphere.main[0],
-                MEDIA.bar.drinks[0],
-                MEDIA.tableStories[2].main.images[0],
-                MEDIA.atmosphere.main[2],
-                MEDIA.bar.wines[1],
-                MEDIA.atmosphere.cellar,
-                MEDIA.atmosphere.main[0],
-                MEDIA.bar.drinks[0],
-                MEDIA.tableStories[2].main.images[0],
-                MEDIA.atmosphere.main[2],
-                MEDIA.bar.wines[1],
-                MEDIA.atmosphere.cellar,
-              ]
-                .map((image) => `<span>${motionRailImage(image)}</span>`)
-                .join("")}
             </div>
           </section>
 
@@ -236,6 +215,31 @@ export function instagramPage() {
             <p class="instagram-night__note" data-instagram-reveal="left">
               Luz baixa, mesa posta e tempo para a conversa continuar.
             </p>
+          </section>
+
+          <section
+            class="instagram-motion-rail"
+            data-instagram-reveal="rail"
+            aria-hidden="true"
+          >
+            <div class="instagram-motion-rail__track">
+              ${[
+                MEDIA.atmosphere.main[0],
+                MEDIA.bar.drinks[0],
+                MEDIA.tableStories[2].main.images[0],
+                MEDIA.atmosphere.main[2],
+                MEDIA.bar.wines[1],
+                MEDIA.atmosphere.cellar,
+                MEDIA.atmosphere.main[0],
+                MEDIA.bar.drinks[0],
+                MEDIA.tableStories[2].main.images[0],
+                MEDIA.atmosphere.main[2],
+                MEDIA.bar.wines[1],
+                MEDIA.atmosphere.cellar,
+              ]
+                .map((image) => `<span>${motionRailImage(image)}</span>`)
+                .join("")}
+            </div>
           </section>
 
           <section class="instagram-visit" aria-labelledby="instagram-visit-title">

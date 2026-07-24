@@ -167,6 +167,8 @@ export const MEDIA = {
   bar: {
     video: "/media/drink-prep.mp4",
     poster: "/media/drink-prep-poster.webp",
+    detailVideo: "/media/drink-orange.mp4",
+    detailPoster: "/media/drink-orange-poster.jpg",
     drinks: [
       {
         src: "/media/drink-lime.webp",
