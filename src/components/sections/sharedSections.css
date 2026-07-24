@@ -48,12 +48,12 @@
   display: grid;
   grid-template-columns: 1.35fr 0.65fr;
   gap: 10vw;
-  padding-block: clamp(5rem, 8vw, 7.5rem);
+  padding-block: clamp(7rem, 13vw, 12rem);
 }
 
 .opening-note > .eyebrow {
   grid-column: 1 / -1;
-  margin-bottom: -4.5vw;
+  margin-bottom: -7vw;
 }
 
 .opening-note h2 {
@@ -76,7 +76,7 @@
 }
 
 .chapter {
-  padding-block: clamp(5.2rem, 8vw, 8.5rem);
+  padding-block: clamp(7rem, 12vw, 11rem);
 }
 
 .chapter-heading {
@@ -84,7 +84,7 @@
   grid-template-columns: 1.15fr 0.55fr;
   align-items: end;
   gap: 8vw;
-  margin-bottom: clamp(3.2rem, 5vw, 5.2rem);
+  margin-bottom: clamp(4.5rem, 8vw, 8rem);
 }
 
 .chapter-heading .eyebrow {
@@ -109,7 +109,7 @@
 }
 
 .reservation-bridge {
-  padding-block: clamp(5.5rem, 9vw, 8.5rem);
+  padding-block: clamp(8rem, 15vw, 14rem);
   text-align: center;
 }
 
@@ -174,15 +174,15 @@
   }
 
   .opening-note {
-    padding-block: 5rem;
+    padding-block: 6.5rem;
   }
 
   .chapter {
-    padding-block: 5rem;
+    padding-block: 6.5rem;
   }
 
   .chapter-heading {
-    margin-bottom: 3.4rem;
+    margin-bottom: 4.2rem;
   }
 
   .reservation-bridge {

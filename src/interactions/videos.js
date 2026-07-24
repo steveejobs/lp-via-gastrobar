@@ -39,7 +39,10 @@ export function initializeVideos() {
   const load = (video) => {
     if (!video.dataset.src || video.src) return;
     const saveData = navigator.connection?.saveData;
-    if (saveData) return;
+    const mobileHomeHero =
+      video.classList.contains("hero-video") &&
+      matchMedia("(max-width: 560px)").matches;
+    if (saveData || mobileHomeHero) return;
     video.src = video.dataset.src;
     video.removeAttribute("data-src");
     video.load();

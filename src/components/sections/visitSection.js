@@ -1,4 +1,4 @@
-import { MEDIA, SITE } from "../../data/site.js";
+import { HOME_MEDIA as MEDIA, SITE } from "../../data/site.js";
 import { externalAttributes, icons } from "../ui/icons.js";
 import { smartVideo } from "../ui/media.js";
 
@@ -8,6 +8,9 @@ export function visitSection() {
       <div class="visit-section__media">
         ${smartVideo({
           src: MEDIA.closing.video,
+          poster: MEDIA.closing.poster,
+          posterWidth: 1440,
+          posterSizes: "(max-width: 900px) 100vw, 50vw",
           label: "Vista do local do Via Gastrobar",
         })}
         <div class="visit-section__media-copy" aria-hidden="true">

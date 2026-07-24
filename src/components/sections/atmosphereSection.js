@@ -1,11 +1,8 @@
-import { MEDIA } from "../../data/site.js";
-import {
-  responsiveImage,
-  responsiveImageSequence,
-} from "../ui/media.js";
+import { HOME_MEDIA as MEDIA } from "../../data/site.js";
+import { responsiveImage } from "../ui/media.js";
 
 export function atmosphereSection() {
-  const { main, support, cellar } = MEDIA.atmosphere;
+  const [main, support, detail] = MEDIA.atmosphere;
 
   return `
     <section class="atmosphere chapter" id="lugar" aria-labelledby="place-title">
@@ -23,9 +20,7 @@ export function atmosphereSection() {
           data-pointer-media
           data-cursor-label="ver"
         >
-          ${responsiveImageSequence(main, {
-            label: "Ambientes do Via Gastrobar",
-          })}
+          ${responsiveImage(main)}
         </figure>
         <figure
           class="atmosphere-composition__support editorial-media reveal"
@@ -34,7 +29,7 @@ export function atmosphereSection() {
           ${responsiveImage(support)}
         </figure>
         <figure class="atmosphere-composition__detail editorial-media reveal">
-          ${responsiveImage(cellar)}
+          ${responsiveImage(detail)}
         </figure>
         <p class="atmosphere-composition__note reveal">
           A mesa está pronta antes do primeiro pedido.

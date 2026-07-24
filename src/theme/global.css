@@ -120,13 +120,6 @@
   background: transparent;
 }
 
-.hero-stage .smart-video-frame > .smart-video,
-.table-story .smart-video-frame > .smart-video,
-.bar-composition .smart-video-frame > .smart-video,
-.visit-section .smart-video-frame > .smart-video {
-  object-fit: contain;
-}
-
 .media-sequence {
   position: relative;
   width: 100%;

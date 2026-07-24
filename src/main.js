@@ -7,10 +7,7 @@ import { initializeNavigation } from "./interactions/navigation.js";
 import { initializeInstagramPage } from "./interactions/instagram.js";
 import { initializePageTransitions } from "./interactions/pageTransition.js";
 import { initializePointerInteractions } from "./interactions/pointer.js";
-import {
-  initializeReveals,
-  prepareTextMotion,
-} from "./interactions/reveal.js";
+import { initializeReveals } from "./interactions/reveal.js";
 import { initializeTracking } from "./interactions/tracking.js";
 import { initializeVideos } from "./interactions/videos.js";
 import { homePage } from "./pages/homePage.js";
@@ -39,7 +36,6 @@ if (isInstagram) {
   document.documentElement.classList.add("is-ready");
   initializeInstagramPage();
 } else {
-  prepareTextMotion();
   document.documentElement.classList.add("is-ready");
   initializeNavigation();
   initializeReveals();

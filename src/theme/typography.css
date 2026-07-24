@@ -23,6 +23,21 @@ h3 {
   line-height: 1;
 }
 
+[data-page="home"] h1 {
+  font-size: clamp(4rem, 6vw, 6.75rem);
+  line-height: 0.88;
+}
+
+[data-page="home"] h2 {
+  font-size: clamp(3.25rem, 5.6vw, 5.6rem);
+  line-height: 0.94;
+}
+
+[data-page="home"] h3 {
+  font-size: clamp(2.35rem, 3.7vw, 4.2rem);
+  line-height: 0.98;
+}
+
 p {
   text-wrap: pretty;
 }
@@ -47,5 +62,17 @@ p {
 
   h3 {
     font-size: clamp(2.05rem, 9.6vw, 3.1rem);
+  }
+
+  [data-page="home"] h1 {
+    font-size: clamp(3.1rem, 13.2vw, 4rem);
+  }
+
+  [data-page="home"] h2 {
+    font-size: clamp(2.8rem, 12.5vw, 4rem);
+  }
+
+  [data-page="home"] h3 {
+    font-size: clamp(2.2rem, 10.5vw, 3.4rem);
   }
 }

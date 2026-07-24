@@ -43,8 +43,18 @@
   --shadow-media: 0 28px 80px rgba(2, 12, 10, 0.28);
 }
 
+[data-page="home"] {
+  --shell: min(88vw, 1320px);
+  --header-height: 92px;
+}
+
 @media (max-width: 900px) {
   :root {
+    --shell: calc(100% - 40px);
+    --header-height: 72px;
+  }
+
+  [data-page="home"] {
     --shell: calc(100% - 40px);
     --header-height: 72px;
   }

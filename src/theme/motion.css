@@ -197,6 +197,110 @@ html.is-leaving [data-page] {
     transform 240ms var(--ease-ui);
 }
 
+/* Coreografia aprovada da home no deploy d9c29b2. */
+[data-page="home"] .reveal.will-reveal,
+[data-page="home"] .editorial-media.reveal.will-reveal {
+  clip-path: none;
+  opacity: 0.001;
+  transform: translate3d(0, 24px, 0);
+}
+
+[data-page="home"] .reveal.is-visible,
+[data-page="home"] .editorial-media.reveal.is-visible {
+  clip-path: none;
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-slow) var(--ease-editorial),
+    transform var(--motion-slow) var(--ease-editorial);
+}
+
+.is-ready [data-page="home"] .hero-stage__light {
+  animation: home-hero-light 1450ms var(--ease-editorial) 120ms both;
+}
+
+.is-ready [data-page="home"] .hero-stage__service {
+  animation: home-hero-frame 1450ms var(--ease-editorial) 140ms both;
+}
+
+.is-ready [data-page="home"] .hero-stage__room {
+  animation: home-hero-support 880ms var(--ease-editorial) 720ms both;
+}
+
+.is-ready [data-page="home"] .hero-stage__salon {
+  animation: home-hero-support 880ms var(--ease-editorial) 880ms both;
+}
+
+.is-ready [data-page="home"] .hero__copy h1 {
+  animation: hero-copy-in 940ms var(--ease-editorial) 260ms both;
+}
+
+[data-page="home"] .atmosphere-composition__support.is-visible,
+[data-page="home"] .bar-composition__drink.is-visible {
+  transition-delay: 120ms;
+}
+
+[data-page="home"] .atmosphere-composition__detail.is-visible,
+[data-page="home"] .bar-composition__wine.is-visible {
+  transition-delay: 240ms;
+}
+
+[data-page="home"] .table-story.will-reveal .table-story__main,
+[data-page="home"] .table-story.will-reveal .table-story__support {
+  opacity: 1;
+  clip-path: none;
+  transform: none;
+}
+
+[data-page="home"] .table-story.is-visible .table-story__main,
+[data-page="home"] .table-story.is-visible .table-story__support {
+  animation: none;
+}
+
+[data-page="home"] .table-story--video.is-visible .table-story__main,
+[data-page="home"] .bar-composition__video.is-visible {
+  animation: home-hero-frame 1050ms var(--ease-editorial) both;
+}
+
+[data-page="home"] .table-story--video.is-visible .table-story__support {
+  animation: home-hero-support 760ms var(--ease-editorial) 320ms both;
+}
+
+@keyframes home-hero-light {
+  from {
+    opacity: 0;
+    transform: translate3d(-30vw, 0, 0);
+  }
+  72% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0.72;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes home-hero-frame {
+  from {
+    clip-path: inset(0 48% 0 48%);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes home-hero-support {
+  from {
+    opacity: 0.05;
+    transform: translate3d(-32px, 18px, 0) scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
