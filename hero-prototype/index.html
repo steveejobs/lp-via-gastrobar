@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#132926" />
+    <meta
+      name="description"
+      content="Protótipo isolado da abertura do Via Gastrobar."
+    />
+    <title>Via Gastrobar — Mesa em Cena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Italiana&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="hero" data-scene="arrival">
+      <div class="hero__grain" aria-hidden="true"></div>
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <header class="hero__header">
+        <a class="brand" href="#" aria-label="Via Gastrobar, início">
+          <img src="../logo completo.jpg" alt="Via Gastrobar" />
+        </a>
+
+        <div class="hero__time">
+          <span class="hero__time-dot" aria-hidden="true"></span>
+          <span>Todos os dias<br />a partir das 18h</span>
+        </div>
+      </header>
+
+      <section class="hero__copy" aria-labelledby="hero-title">
+        <p class="hero__eyebrow">Gastronomia · drinks · encontros</p>
+        <h1 id="hero-title">
+          A noite encontra
+          <em>seu lugar à mesa.</em>
+        </h1>
+        <p class="hero__lead">
+          Luz baixa, bebida servida e tempo para ficar.
+        </p>
+
+        <div class="hero__actions">
+          <a
+            class="button button--primary"
+            href="https://api.whatsapp.com/send?phone=5563991394000"
+          >
+            <span>Reservar no WhatsApp</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M5 12h13M13 6l6 6-6 6" />
+            </svg>
+          </a>
+          <a
+            class="button button--route"
+            href="https://maps.app.goo.gl/jis5grnFQH36mhWs7"
+          >
+            Traçar rota
+          </a>
+        </div>
+      </section>
+
+      <div class="table-scene" aria-label="Atmosfera do Via Gastrobar">
+        <div class="table-scene__surface" aria-hidden="true"></div>
+        <div class="table-scene__line" aria-hidden="true"></div>
+
+        <figure class="media media--pour">
+          <video
+            muted
+            playsinline
+            loop
+            preload="metadata"
+            poster="../vinho 1 (1).jpg"
+            aria-label="Vinho sendo servido no Via Gastrobar"
+          >
+            <source src="../video para animação.mp4" type="video/mp4" />
+          </video>
+          <figcaption>O primeiro serviço</figcaption>
+        </figure>
+
+        <figure class="media media--room">
+          <img
+            src="../ambiente (4).jpg"
+            alt="Mesa posta no salão do Via Gastrobar"
+          />
+          <figcaption>Mesa posta</figcaption>
+        </figure>
+
+        <figure class="media media--table">
+          <img
+            src="../ambiente (3).jpg"
+            alt="Salão do Via Gastrobar com mesas e cadeiras verdes"
+          />
+          <figcaption>Para chegar sem pressa</figcaption>
+        </figure>
+
+        <div class="scene-index" aria-hidden="true">
+          <span class="scene-index__current">01</span>
+          <span class="scene-index__line"></span>
+          <span>03</span>
+        </div>
+      </div>
+
+      <nav class="hero__quick" aria-label="Acessos rápidos">
+        <a href="https://www.instagram.com/viagastrobar/">Instagram</a>
+        <span aria-hidden="true"></span>
+        <a href="tel:+5563991394000">(63) 99139-4000</a>
+      </nav>
+
+      <button class="motion-toggle" type="button" aria-pressed="false">
+        <span class="motion-toggle__pause" aria-hidden="true"></span>
+        <span class="motion-toggle__label">Pausar movimento</span>
+      </button>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
