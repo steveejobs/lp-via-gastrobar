@@ -124,23 +124,71 @@
 }
 
 .sea-note__media {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 310px));
-  justify-content: end;
-  align-items: end;
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.sea-gallery::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 12%;
+  pointer-events: none;
+  background: linear-gradient(to left, var(--color-green-900), transparent);
+}
+
+.sea-gallery__track {
+  --sea-shift: 0px;
+  display: flex;
+  align-items: center;
   gap: 1rem;
+  transform: translate3d(0, 0, 0);
+  transition: transform 1100ms var(--ease-editorial);
+  will-change: transform;
 }
 
-.sea-note__media figure {
-  width: 100%;
+.sea-gallery.is-shifting .sea-gallery__track {
+  transform: translate3d(calc(-1 * var(--sea-shift)), 0, 0);
+}
+
+.sea-gallery.is-resetting .sea-gallery__track {
+  transition: none;
+}
+
+.sea-gallery__item {
+  position: relative;
+  width: auto;
+  flex: 0 0 calc((100% - 2rem) / 3);
   aspect-ratio: 9 / 16;
+  margin: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-media);
+  transform: scale(1);
+  transform-origin: center;
+  transition:
+    opacity 900ms var(--ease-editorial),
+    transform 1100ms var(--ease-editorial);
 }
 
-.sea-note__media img,
-.sea-note__media .media-sequence__item {
-  object-fit: contain;
+.sea-gallery__item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
   object-position: center;
-  background: var(--color-green-900);
+}
+
+.sea-gallery.is-shifting .sea-gallery__item:first-child {
+  opacity: 0.3;
+  transform: scale(0.94) rotate(-0.6deg);
+}
+
+.sea-gallery.is-shifting .sea-gallery__item:nth-child(2) {
+  transform: scale(1.015);
 }
 
 @media (max-width: 900px) {
@@ -197,9 +245,8 @@
     gap: 3.5rem;
   }
 
-  .sea-note__media figure {
-    width: 100%;
-    justify-self: center;
+  .sea-gallery__item {
+    flex-basis: min(42vw, 280px);
   }
 }
 
@@ -213,7 +260,21 @@
     width: min(86vw, 360px);
   }
 
-  .sea-note__media figure {
-    width: 100%;
+  .sea-gallery__track {
+    gap: 0.7rem;
+  }
+
+  .sea-gallery {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    padding-inline: 20px;
+  }
+
+  .sea-gallery::after {
+    display: none;
+  }
+
+  .sea-gallery__item {
+    flex-basis: calc((100% - 1.4rem) / 3);
   }
 }

@@ -330,8 +330,7 @@ export const HOME_MEDIA = {
       },
     },
   ],
-  sea: [...MEDIA.sea, ...MEDIA.seaFeatured],
-  seaFeatured: [...MEDIA.sea, ...MEDIA.seaFeatured],
+  sea: [...MEDIA.seaFeatured, ...MEDIA.sea],
   bar: MEDIA.bar,
   wine: {
     cellar: MEDIA.atmosphere.cellarDetail,

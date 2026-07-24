@@ -92,18 +92,22 @@ export function tableSection() {
             Reservar para hoje ${icons.arrow}
           </a>
         </div>
-        <div class="sea-note__media">
-          <figure class="editorial-media reveal" data-pointer-media>
-            ${responsiveImageSequence(MEDIA.sea, {
-              label: "Pratos do mar servidos no Via Gastrobar",
-            })}
-          </figure>
-          <figure class="editorial-media reveal" data-pointer-media>
-            ${responsiveImageSequence(MEDIA.seaFeatured, {
-              label: "Seleção de frutos do mar do Via Gastrobar",
-              offset: 2,
-            })}
-          </figure>
+        <div
+          class="sea-note__media sea-gallery reveal"
+          data-sea-gallery
+          aria-label="Cinco pratos do mar servidos no Via Gastrobar"
+        >
+          <div class="sea-gallery__track">
+            ${MEDIA.sea
+              .map(
+                (image) => `
+                  <figure class="sea-gallery__item">
+                    ${responsiveImage(image)}
+                  </figure>
+                `,
+              )
+              .join("")}
+          </div>
         </div>
       </section>
     </section>
