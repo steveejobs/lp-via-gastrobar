@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "audit:visual": "node tools/visual-audit.cjs",
+    "audit:instagram": "node tools/audit-instagram.cjs",
     "audit:media": "node tools/media-inventory.cjs",
     "media:poster": "node tools/extract-video-poster.cjs"
   },

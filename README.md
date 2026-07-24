@@ -54,9 +54,11 @@ ignorados no upload pelo `.vercelignore`.
 - `PROJECT_CONTEXT.md`: decisões, arquitetura e estado do projeto.
 - `docs/AUDITORIA_PROFISSIONAL.md`: auditoria visual, estratégica, técnica e
   plano de implementação.
+- `docs/INSTAGRAM.md`: direção, referências e QA da rota mobile `/instagram`.
 
 ```bash
 npm run audit:media
 npm run audit:visual
+npm run audit:instagram
 python tools/optimize_images.py --help
 ```

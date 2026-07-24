@@ -131,6 +131,7 @@ tools/
   optimize_images.py
 docs/
   AUDITORIA_PROFISSIONAL.md
+  INSTAGRAM.md
 ```
 
 ## 6. Inventário resumido de assets
@@ -197,6 +198,16 @@ Estado após correção:
 - transferência inicial local mobile: aproximadamente 1,21 MB;
 - auditoria completa: `docs/AUDITORIA_PROFISSIONAL.md`.
 
+### Rota `/instagram`
+
+- entrada estática própria em `instagram.html`;
+- composição 100% mobile, com largura máxima de 520 px;
+- reserva e rota visíveis na primeira dobra;
+- sem vídeo ou autoplay;
+- aproximadamente 913 kB de transferência inicial local;
+- zero overflow em 360, 375, 390, 412 e 430 px;
+- detalhes e regras em `docs/INSTAGRAM.md`.
+
 ## 8. Critérios de aceite
 
 - Sem overflow horizontal nos viewports definidos.
@@ -243,3 +254,6 @@ python tools/optimize_images.py --help
 - Axe zerou violações A/AA após correção do contraste da action bar; gradientes
   continuam no checklist visual manual.
 - `npm run build` aprovado.
+- `/instagram` redesenhado a partir da análise de Ótica Moderna, Hanzaki e SOS
+  Ótica, preservando identidade própria e sem copiar catálogo ou avaliações.
+- Criado `tools/audit-instagram.cjs` para QA específico mobile.

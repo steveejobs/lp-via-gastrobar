@@ -4,11 +4,11 @@
   "rewrites": [
     {
       "source": "/instagram",
-      "destination": "/index.html"
+      "destination": "/instagram.html"
     },
     {
       "source": "/instagram/",
-      "destination": "/index.html"
+      "destination": "/instagram.html"
     }
   ],
   "headers": [

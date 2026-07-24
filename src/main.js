@@ -4,6 +4,7 @@ import "./components/sections/sections.css";
 import "./pages/pages.css";
 
 import { initializeNavigation } from "./interactions/navigation.js";
+import { initializeInstagramPage } from "./interactions/instagram.js";
 import { initializePageTransitions } from "./interactions/pageTransition.js";
 import { initializePointerInteractions } from "./interactions/pointer.js";
 import { initializeReveals } from "./interactions/reveal.js";
@@ -12,24 +13,29 @@ import { homePage } from "./pages/homePage.js";
 import { instagramPage } from "./pages/instagramPage.js";
 
 const path = window.location.pathname.replace(/\/+$/, "") || "/";
-const isInstagram = path === "/instagram";
+const isInstagram = path === "/instagram" || path === "/instagram.html";
 
 document.title = isInstagram
   ? "Via Gastrobar — Links"
   : "Via Gastrobar — Gastronomia, drinks e noite";
 
 const app = document.querySelector("#app");
-const alreadyPrerendered = app.querySelector('[data-page="home"]');
+const alreadyPrerenderedHome = app.querySelector('[data-page="home"]');
+const alreadyPrerenderedInstagram = app.querySelector(
+  '[data-page="instagram"]',
+);
 
-if (isInstagram) {
+if (isInstagram && !alreadyPrerenderedInstagram) {
   app.innerHTML = instagramPage();
-} else if (!alreadyPrerendered) {
+} else if (!isInstagram && !alreadyPrerenderedHome) {
   app.innerHTML = homePage();
 }
 
 document.documentElement.classList.add("is-ready");
 
-if (!isInstagram) {
+if (isInstagram) {
+  initializeInstagramPage();
+} else {
   initializeNavigation();
   initializeReveals();
   initializeVideos();
