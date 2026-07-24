@@ -10,8 +10,6 @@ export function heroSection() {
       data-hero
       aria-labelledby="hero-title"
     >
-      <div class="hero__ambient" aria-hidden="true"></div>
-
       <div class="hero__copy">
         <p class="eyebrow">Gastronomia · drinks · noite</p>
         <h1 id="hero-title">A noite começa <em>à mesa.</em></h1>
@@ -51,15 +49,14 @@ export function heroSection() {
         </dl>
       </div>
 
-      <div class="hero-stage editorial-media" data-pointer-media>
-        <div class="hero-stage__light" aria-hidden="true"></div>
+      <div class="hero-stage">
         <figure class="hero-stage__service">
           ${smartVideo({
             src: MEDIA.hero.video,
-            poster: MEDIA.hero.poster,
             label: "Serviço e atmosfera do Via Gastrobar",
             className: "hero-video",
-            preload: "metadata",
+            preload: "auto",
+            eager: true,
             priority: true,
             loopStart: 0.15,
             loopEnd: 6.4,

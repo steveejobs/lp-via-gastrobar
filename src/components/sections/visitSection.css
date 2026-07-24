@@ -15,6 +15,7 @@
 .visit-section__media > .smart-video-frame {
   position: absolute;
   inset: 0;
+  background: #1d1411;
 }
 
 .visit-section__media video {
@@ -31,6 +32,26 @@
   inset: 0;
   pointer-events: none;
   background: linear-gradient(to top, rgba(22, 11, 8, 0.55), transparent 50%);
+}
+
+.visit-section__media-copy {
+  position: absolute;
+  z-index: 3;
+  right: clamp(1.5rem, 4vw, 4rem);
+  bottom: clamp(1.5rem, 4vw, 4rem);
+  left: clamp(1.5rem, 4vw, 4rem);
+  max-width: 470px;
+}
+
+.visit-section__media-copy .eyebrow {
+  margin-bottom: 0.8rem;
+}
+
+.visit-section__media-copy > p:last-child {
+  color: var(--color-cream-100);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.2vw, 3.2rem);
+  line-height: 1.06;
 }
 
 .visit-section__content {

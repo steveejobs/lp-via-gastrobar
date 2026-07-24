@@ -3,21 +3,7 @@
   min-height: max(720px, 100svh);
   overflow: hidden;
   isolation: isolate;
-  background:
-    radial-gradient(circle at 77% 46%, rgba(72, 110, 94, 0.21), transparent 30%),
-    linear-gradient(132deg, var(--color-green-900), var(--color-green-800) 58%, #102420);
-}
-
-.hero__ambient {
-  position: absolute;
-  z-index: -1;
-  width: 58vw;
-  height: 58vw;
-  top: 12vh;
-  right: -12vw;
-  border-radius: 50%;
-  background: rgba(216, 186, 149, 0.08);
-  filter: blur(90px);
+  background: var(--color-green-900);
 }
 
 .hero__copy {
@@ -86,63 +72,17 @@
   right: clamp(24px, 3.5vw, 66px);
   bottom: clamp(58px, 7vh, 78px);
   left: 45vw;
-  overflow: visible;
-  box-shadow: none;
-}
-
-.hero-stage::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: 105%;
-  height: 72%;
-  right: -15%;
-  bottom: -12%;
-  border: 1px solid rgba(216, 186, 149, 0.12);
-  border-radius: 50%;
-  background:
-    linear-gradient(104deg, rgba(119, 64, 39, 0.06), rgba(119, 64, 39, 0.22)),
-    repeating-linear-gradient(
-      92deg,
-      transparent 0 10%,
-      rgba(216, 186, 149, 0.025) 10% 10.2%
-    );
-    transform: rotate(-7deg);
-}
-
-.hero-stage__light {
-  position: absolute;
-  z-index: 12;
-  top: 4%;
-  bottom: 4%;
-  left: 54%;
-  width: 1px;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--color-gold-500) 15% 85%,
-    transparent
-  );
-  box-shadow: 0 0 24px rgba(216, 186, 149, 0.42);
+  display: grid;
+  grid-template-columns: 1.53fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(0.6rem, 1vw, 0.9rem);
 }
 
 .hero-stage figure {
-  position: absolute;
+  position: relative;
   margin: 0;
   overflow: hidden;
-  background: var(--color-green-900);
-  box-shadow: var(--shadow-media);
-}
-
-.hero-stage figure::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  pointer-events: none;
-  border: 1px solid rgba(255, 249, 239, 0.1);
-  background: linear-gradient(to top, rgba(7, 18, 16, 0.34), transparent 44%);
+  background: transparent;
 }
 
 .hero-stage video,
@@ -157,23 +97,17 @@
 
 .hero-stage img {
   object-fit: contain;
-  background: var(--color-green-900);
+  background: transparent;
 }
 
 .hero-stage__service {
-  z-index: 4;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 54%;
+  grid-column: 1;
+  grid-row: 1 / -1;
 }
 
 .hero-stage__room {
-  z-index: 3;
-  top: 5%;
-  right: 0;
-  width: 37%;
-  height: 41%;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .hero-stage__room img {
@@ -181,11 +115,8 @@
 }
 
 .hero-stage__salon {
-  z-index: 2;
-  right: 4%;
-  bottom: 3%;
-  width: 43%;
-  height: 43%;
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .hero-stage__salon img {
@@ -268,26 +199,6 @@
     bottom: 36px;
     left: 0;
     min-height: 330px;
-  }
-
-  .hero-stage__light {
-    left: 56%;
-  }
-
-  .hero-stage__service {
-    width: 56%;
-  }
-
-  .hero-stage__room {
-    right: 4%;
-    width: 37%;
-    height: 42%;
-  }
-
-  .hero-stage__salon {
-    right: 5%;
-    width: 43%;
-    height: 48%;
   }
 
   .hero__scroll {

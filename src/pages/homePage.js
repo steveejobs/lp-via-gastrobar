@@ -7,6 +7,7 @@ import { barSection } from "../components/sections/barSection.js";
 import { heroSection } from "../components/sections/heroSection.js";
 import { tableSection } from "../components/sections/tableSection.js";
 import { visitSection } from "../components/sections/visitSection.js";
+import { wineSection } from "../components/sections/wineSection.js";
 
 export function homePage() {
   return `
@@ -30,6 +31,7 @@ export function homePage() {
         ${atmosphereSection()}
         ${tableSection()}
         ${barSection()}
+        ${wineSection()}
 
         <section class="reservation-bridge section-shell reveal" aria-labelledby="bridge-title">
           <p class="eyebrow">A noite continua</p>

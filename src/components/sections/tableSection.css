@@ -117,7 +117,7 @@
 
 .sea-note__media {
   display: grid;
-  grid-template-columns: minmax(260px, 390px);
+  grid-template-columns: repeat(2, minmax(180px, 310px));
   justify-content: end;
   align-items: end;
   gap: 1rem;
@@ -182,7 +182,7 @@
   }
 
   .sea-note__media figure {
-    width: min(76vw, 360px);
+    width: 100%;
     justify-self: center;
   }
 }
@@ -198,6 +198,6 @@
   }
 
   .sea-note__media figure {
-    width: min(82vw, 330px);
+    width: 100%;
   }
 }

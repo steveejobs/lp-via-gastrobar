@@ -26,7 +26,6 @@ export function barSection() {
           ${smartVideo({
             src: MEDIA.bar.video,
             playlist: [MEDIA.bar.video, MEDIA.bar.detailVideo],
-            poster: MEDIA.bar.poster,
             label: "Preparo de drink no Via Gastrobar",
           })}
         </figure>

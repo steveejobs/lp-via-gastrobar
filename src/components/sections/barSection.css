@@ -18,6 +18,10 @@
   background: var(--color-wood-900);
 }
 
+.bar-composition__video .smart-video-frame {
+  background: var(--color-wood-900);
+}
+
 .bar-composition__video::before {
   content: "";
   position: absolute;

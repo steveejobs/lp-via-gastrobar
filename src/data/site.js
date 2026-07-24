@@ -69,6 +69,12 @@ export const MEDIA = {
       height: 1920,
       alt: "Adega iluminada no Via Gastrobar",
     },
+    cellarDetail: {
+      src: "/media/ambient-cellar-02.jpg",
+      width: 2346,
+      height: 1320,
+      alt: "Seleção de vinhos da adega do Via Gastrobar",
+    },
   },
   tableStories: [
     {
@@ -91,6 +97,12 @@ export const MEDIA = {
             width: 1125,
             height: 1406,
             alt: "Detalhe do mesmo prato servido",
+          },
+          {
+            src: "/media/plate-steak-07.jpg",
+            width: 1320,
+            height: 2346,
+            alt: "Prato de carne servido com acompanhamentos",
           },
         ],
       },
@@ -166,6 +178,26 @@ export const MEDIA = {
       width: 1290,
       height: 2293,
       alt: "Prato do mar servido no Via Gastrobar",
+    },
+  ],
+  seaFeatured: [
+    {
+      src: "/media/sea-special-01.jpg",
+      width: 1080,
+      height: 1919,
+      alt: "Prato de lagosta servido no Via Gastrobar",
+    },
+    {
+      src: "/media/sea-special-02.jpg",
+      width: 1080,
+      height: 1919,
+      alt: "Camarões preparados no Via Gastrobar",
+    },
+    {
+      src: "/media/sea-special-03.jpg",
+      width: 1080,
+      height: 1919,
+      alt: "Prato crocante de frutos do mar",
     },
   ],
   bar: {
@@ -271,9 +303,14 @@ export const HOME_MEDIA = {
     MEDIA.tableStories[2],
   ],
   sea: MEDIA.sea,
+  seaFeatured: MEDIA.seaFeatured,
   bar: MEDIA.bar,
+  wine: {
+    cellar: MEDIA.atmosphere.cellarDetail,
+    service: [MEDIA.bar.wines[0], MEDIA.bar.wines[1]],
+    details: [MEDIA.bar.wines[2], MEDIA.bar.wines[0]],
+  },
   closing: {
-    video: "/media/location-close.mp4",
-    poster: "/media/ambient-bar.webp",
+    video: "/media/location-establishment.mp4",
   },
 };

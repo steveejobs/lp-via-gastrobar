@@ -10,7 +10,6 @@ function storyMedia(media) {
     return smartVideo({
       src: media.src,
       playlist: media.playlist,
-      poster: media.poster,
       label: media.label,
     });
   }
@@ -92,6 +91,11 @@ export function tableSection() {
           <figure class="editorial-media reveal" data-pointer-media>
             ${responsiveImageSequence(MEDIA.sea, {
               label: "Pratos do mar servidos no Via Gastrobar",
+            })}
+          </figure>
+          <figure class="editorial-media reveal" data-pointer-media>
+            ${responsiveImageSequence(MEDIA.seaFeatured, {
+              label: "Seleção de frutos do mar do Via Gastrobar",
             })}
           </figure>
         </div>
