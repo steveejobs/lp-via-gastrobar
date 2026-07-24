@@ -1,18 +1,9 @@
 import { initializeVideos } from "./videos.js";
 
 export function initializeInstagramPage() {
-  const canvas = document.querySelector(".instagram-canvas");
   const dock = document.querySelector("[data-instagram-dock]");
   const status = document.querySelector("[data-instagram-status]");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-
-  if (!reducedMotion.matches && window.scrollY < 48) {
-    canvas?.classList.add("has-intro-motion");
-    window.setTimeout(
-      () => canvas?.classList.remove("has-intro-motion"),
-      3400,
-    );
-  }
 
   let statusTimer = 0;
   const updateStatus = () => {

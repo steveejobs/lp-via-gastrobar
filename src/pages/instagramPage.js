@@ -99,10 +99,6 @@ export function instagramPage() {
                 loopStart: 0.4,
                 loopEnd: 11.8,
               })}
-              <figcaption>
-                <span>Em movimento</span>
-                <span class="instagram-live-dot" aria-hidden="true"></span>
-              </figcaption>
             </figure>
             <figure aria-label="Drinks do Via Gastrobar" data-parallax="-7">
               ${imageCycle(
