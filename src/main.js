@@ -10,7 +10,6 @@ import { initializePointerInteractions } from "./interactions/pointer.js";
 import {
   initializeMediaSequences,
   initializeReveals,
-  initializeSeaGalleries,
   prepareTextMotion,
 } from "./interactions/reveal.js";
 import { initializeTracking } from "./interactions/tracking.js";
@@ -48,7 +47,6 @@ if (isInstagram) {
   initializeNavigation();
   initializeReveals();
   initializeMediaSequences();
-  initializeSeaGalleries();
   initializeVideos();
   initializePointerInteractions();
 }

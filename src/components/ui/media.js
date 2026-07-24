@@ -46,6 +46,7 @@ export function responsiveImageSequence(
     className = "",
     label = "Sequência de imagens",
     offset = 0,
+    transition = "soft",
   } = {},
 ) {
   const sequenceClass = `media-sequence media-sequence--${Math.min(
@@ -60,6 +61,7 @@ export function responsiveImageSequence(
       aria-label="${label}"
       data-media-sequence
       data-sequence-offset="${offset}"
+      data-sequence-transition="${transition}"
     >
       ${images
         .map((image, index) =>

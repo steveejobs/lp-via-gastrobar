@@ -182,29 +182,6 @@ export const MEDIA = {
       alt: "Prato do mar servido no Via Gastrobar",
     },
   ],
-  seaFeatured: [
-    {
-      src: "/media/sea-special-01.jpg",
-      width: 1080,
-      height: 1919,
-      alt: "Prato de lagosta servido no Via Gastrobar",
-      fallbackSrc: "/media/plate-lobster.webp",
-    },
-    {
-      src: "/media/sea-special-02.jpg",
-      width: 1080,
-      height: 1919,
-      alt: "Camarões preparados no Via Gastrobar",
-      fallbackSrc: "/media/plate-octopus.webp",
-    },
-    {
-      src: "/media/sea-special-03.jpg",
-      width: 1080,
-      height: 1919,
-      alt: "Prato crocante de frutos do mar",
-      fallbackSrc: "/media/plate-lobster.webp",
-    },
-  ],
   bar: {
     video: "/media/drink-prep.mp4",
     champagneVideo: "/media/drink-champagne.mp4",
@@ -310,8 +287,11 @@ export const HOME_MEDIA = {
       copy: "O preparo ganha movimento antes de chegar à mesa.",
       main: {
         type: "video",
-        src: "/media/plate-lamb-prep.mp4",
-        poster: "/media/plate-lamb-prep-poster.webp",
+        src: "/media/plate-prep-full.mp4",
+        playlist: [
+          "/media/plate-prep-full.mp4",
+          "/media/plate-service.mp4",
+        ],
         label: "Preparo de um prato do Via Gastrobar",
       },
       support: MEDIA.tableStories[1].support,
@@ -330,7 +310,50 @@ export const HOME_MEDIA = {
       },
     },
   ],
-  sea: [...MEDIA.seaFeatured, ...MEDIA.sea],
+  sea: [
+    {
+      src: "/media/sea-dish-01.webp",
+      width: 1080,
+      height: 1919,
+      alt: "Peixe crocante servido com acompanhamentos",
+    },
+    {
+      src: "/media/sea-dish-02.webp",
+      width: 1290,
+      height: 2293,
+      alt: "Lagosta gratinada servida no Via Gastrobar",
+    },
+    {
+      src: "/media/sea-dish-03.webp",
+      width: 1290,
+      height: 2293,
+      alt: "Polvo grelhado servido no Via Gastrobar",
+    },
+    {
+      src: "/media/sea-dish-04.webp",
+      width: 1290,
+      height: 2293,
+      alt: "Detalhe do polvo mediterrâneo",
+    },
+    {
+      src: "/media/sea-dish-05.webp",
+      width: 1080,
+      height: 1919,
+      alt: "Lagostas servidas com arroz",
+    },
+    {
+      src: "/media/sea-dish-06.webp",
+      width: 1080,
+      height: 1919,
+      alt: "Camarões preparados e servidos no Via Gastrobar",
+    },
+    {
+      src: "/media/sea-dish-07.webp",
+      width: 1080,
+      height: 1919,
+      alt: "Polvo servido à mesa no Via Gastrobar",
+    },
+  ],
   bar: MEDIA.bar,
   wine: {
     cellar: MEDIA.atmosphere.cellarDetail,

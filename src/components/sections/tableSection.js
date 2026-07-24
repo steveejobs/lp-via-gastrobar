@@ -63,6 +63,9 @@ function tableStory(story, index) {
 }
 
 export function tableSection() {
+  const seaPrimary = MEDIA.sea.filter((_, index) => index % 2 === 0);
+  const seaSupport = MEDIA.sea.filter((_, index) => index % 2 === 1);
+
   return `
     <section class="table-section chapter" id="mesa" aria-labelledby="table-title">
       <div class="section-shell chapter-heading chapter-heading--split reveal">
@@ -93,21 +96,22 @@ export function tableSection() {
           </a>
         </div>
         <div
-          class="sea-note__media sea-gallery reveal"
-          data-sea-gallery
-          aria-label="Cinco pratos do mar servidos no Via Gastrobar"
+          class="sea-note__media sea-composition reveal"
+          aria-label="Sete pratos do mar servidos no Via Gastrobar"
         >
-          <div class="sea-gallery__track">
-            ${MEDIA.sea
-              .map(
-                (image) => `
-                  <figure class="sea-gallery__item">
-                    ${responsiveImage(image)}
-                  </figure>
-                `,
-              )
-              .join("")}
-          </div>
+          <figure class="sea-composition__primary editorial-media">
+            ${responsiveImageSequence(seaPrimary, {
+              label: "Seleção de pratos do mar",
+              transition: "editorial",
+            })}
+          </figure>
+          <figure class="sea-composition__support editorial-media">
+            ${responsiveImageSequence(seaSupport, {
+              label: "Detalhes dos pratos do mar",
+              offset: 1,
+              transition: "editorial",
+            })}
+          </figure>
         </div>
       </section>
     </section>

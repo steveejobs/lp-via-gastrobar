@@ -125,6 +125,7 @@ export function initializeMediaSequences() {
   if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
 
   const visibleSequences = new Set();
+  const transitionTimers = new WeakMap();
   let sequenceStep = 0;
   const showSequenceStep = (sequence, step) => {
     const items = [...sequence.querySelectorAll(".media-sequence__item")];
@@ -135,8 +136,37 @@ export function initializeMediaSequences() {
     const nextItem = items[nextIndex];
     if (!nextItem.complete || nextItem.naturalWidth === 0) return;
 
+    const currentItem = items.find((item) =>
+      item.classList.contains("is-sequence-current"),
+    );
+    if (currentItem === nextItem) return;
+
+    const editorial = sequence.dataset.sequenceTransition === "editorial";
+    window.clearTimeout(transitionTimers.get(sequence));
+    items.forEach((item) => {
+      item.classList.remove("is-sequence-entering", "is-sequence-leaving");
+    });
+
+    if (editorial && currentItem) {
+      currentItem.classList.add("is-sequence-leaving");
+      nextItem.classList.add("is-sequence-entering");
+      sequence.classList.remove("is-sequence-transitioning");
+      sequence.getBoundingClientRect();
+      sequence.classList.add("is-sequence-transitioning");
+    }
+
     items.forEach((item) => item.classList.remove("is-sequence-current"));
     nextItem.classList.add("is-sequence-current");
+
+    if (editorial) {
+      const timer = window.setTimeout(() => {
+        items.forEach((item) => {
+          item.classList.remove("is-sequence-entering", "is-sequence-leaving");
+        });
+        sequence.classList.remove("is-sequence-transitioning");
+      }, 1500);
+      transitionTimers.set(sequence, timer);
+    }
   };
 
   const updateSequence = (sequence) => {
@@ -197,67 +227,4 @@ export function initializeMediaSequences() {
   document.addEventListener("visibilitychange", () => {
     sequences.forEach(updateSequence);
   });
-}
-
-export function initializeSeaGalleries() {
-  const galleries = [...document.querySelectorAll("[data-sea-gallery]")];
-  if (!galleries.length) return;
-
-  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-  if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
-
-  const visibleGalleries = new Set();
-  const advanceGallery = (gallery) => {
-    if (gallery.classList.contains("is-shifting")) return;
-
-    const track = gallery.querySelector(".sea-gallery__track");
-    const firstItem = track?.firstElementChild;
-    if (!track || !firstItem) return;
-
-    const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
-    const distance = firstItem.getBoundingClientRect().width + gap;
-    track.style.setProperty("--sea-shift", `${distance}px`);
-    gallery.classList.add("is-shifting");
-
-    let fallbackTimer;
-    const finish = (event) => {
-      if (
-        event &&
-        (event.target !== track || event.propertyName !== "transform")
-      ) {
-        return;
-      }
-
-      window.clearTimeout(fallbackTimer);
-      track.removeEventListener("transitionend", finish);
-      track.append(firstItem);
-      gallery.classList.add("is-resetting");
-      gallery.classList.remove("is-shifting");
-      track.getBoundingClientRect();
-      requestAnimationFrame(() => gallery.classList.remove("is-resetting"));
-    };
-
-    track.addEventListener("transitionend", finish);
-    fallbackTimer = window.setTimeout(() => finish(), 1500);
-  };
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        galleryToggle(entry.target, entry.isIntersecting);
-      });
-    },
-    { rootMargin: "100px 0px", threshold: 0.12 },
-  );
-
-  const galleryToggle = (gallery, isVisible) => {
-    if (isVisible) visibleGalleries.add(gallery);
-    else visibleGalleries.delete(gallery);
-  };
-
-  galleries.forEach((gallery) => observer.observe(gallery));
-  window.setInterval(() => {
-    if (document.hidden) return;
-    visibleGalleries.forEach(advanceGallery);
-  }, 4600);
 }
