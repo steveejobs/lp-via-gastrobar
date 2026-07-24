@@ -36,6 +36,38 @@ export function responsiveImage(image, className = "") {
   `;
 }
 
+export function responsiveImageSequence(
+  images,
+  { className = "", label = "Sequência de imagens" } = {},
+) {
+  const sequenceClass = `media-sequence media-sequence--${Math.min(
+    images.length,
+    3,
+  )} ${className}`.trim();
+
+  return `
+    <span class="${sequenceClass}" role="img" aria-label="${label}">
+      ${images
+        .map((image, index) =>
+          responsiveImage(
+            {
+              ...image,
+              alt: "",
+              sizes:
+                image.sizes ||
+                "(max-width: 560px) 88vw, (max-width: 900px) 46vw, 30vw",
+            },
+            "media-sequence__item",
+          ).replace(
+            'class="media-sequence__item"',
+            `class="media-sequence__item" style="--sequence-index: ${index}" aria-hidden="true"`,
+          ),
+        )
+        .join("")}
+    </span>
+  `;
+}
+
 export function smartVideo({
   src,
   poster,

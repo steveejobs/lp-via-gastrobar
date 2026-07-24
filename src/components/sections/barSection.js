@@ -1,6 +1,9 @@
 import { MEDIA, SITE } from "../../data/site.js";
 import { externalAttributes, icons } from "../ui/icons.js";
-import { responsiveImage, smartVideo } from "../ui/media.js";
+import {
+  responsiveImageSequence,
+  smartVideo,
+} from "../ui/media.js";
 
 export function barSection() {
   return `
@@ -29,10 +32,14 @@ export function barSection() {
           <figcaption>O ritual começa no bar.</figcaption>
         </figure>
         <figure class="bar-composition__drink editorial-media reveal" data-pointer-media>
-          ${responsiveImage(MEDIA.bar.drink)}
+          ${responsiveImageSequence(MEDIA.bar.drinks, {
+            label: "Drinks servidos no Via Gastrobar",
+          })}
         </figure>
         <figure class="bar-composition__wine editorial-media reveal">
-          ${responsiveImage(MEDIA.bar.wine)}
+          ${responsiveImageSequence(MEDIA.bar.wines, {
+            label: "Vinhos servidos no Via Gastrobar",
+          })}
         </figure>
         <div class="bar-composition__copy reveal">
           <p>Da primeira taça ao tempo de permanecer.</p>

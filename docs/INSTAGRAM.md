@@ -50,19 +50,22 @@ cards comerciais ou estrutura de catálogo.
 2. `@viagastrobar`;
 3. “A noite começa à mesa.”;
 4. funcionamento;
-5. composição com ambiente, drink e prato;
+5. composição em movimento com vídeo de serviço, drinks e pratos alternados;
 6. Reservar mesa;
 7. Traçar rota;
 8. Instagram e site completo como ações terciárias.
 
-### A noite em três imagens
+### A noite em movimento
 
-- protagonista: `ambiente (3)` / `ambient-salon.webp`;
-- apoio: `prato 4 (2)` / `plate-fish.webp`;
-- apoio: poster de serviço de vinho.
+- abertura: vídeo de serviço de vinho em 720×1280;
+- apoios: ciclos suaves de drinks e pratos;
+- transição: faixa editorial contínua com ambiente, bar e cozinha;
+- segundo capítulo: vídeo de preparo com imagens alternadas de salão e pratos;
+- fechamento: vídeo de chegada/localização sob o CTA final.
 
-Não há vídeo nesta rota. A imagem estabelece desejo com menor custo de rede e
-sem autoplay no acesso vindo de redes sociais.
+Somente o vídeo visível permanece rodando. Os demais carregam por proximidade e
+pausam fora da viewport, em aba oculta, com economia de dados ou quando a pessoa
+prefere movimento reduzido.
 
 ### Informação operacional
 
@@ -109,7 +112,8 @@ Resultados:
 - reserva e rota na primeira dobra em todos os tamanhos;
 - alvos clicáveis com pelo menos 44 px;
 - WhatsApp, Maps e Instagram abrem os destinos corretos;
-- transferência inicial local em 390×844: aproximadamente 913 kB;
+- transferência inicial local em 390×844: entre 0,9 e 2,8 MB conforme o buffer
+  de vídeo solicitado pelo navegador;
 - Axe: zero violações automáticas A/AA;
 - 13 contrastes em gradientes ficaram inconclusivos e permanecem na revisão
   visual manual;
@@ -128,10 +132,10 @@ npm run audit:instagram
 - não adicionar avaliações sem fonte confirmada;
 - não transformar em catálogo;
 - não esconder reserva abaixo da primeira dobra;
-- não usar vídeo pesado ou autoplay;
+- manter apenas um vídeo reproduzindo por vez e preservar poster, lazy loading,
+  pausa fora da viewport e `prefers-reduced-motion`;
 - não adicionar mais de quatro ações iniciais;
 - preservar reserva > rota > Instagram;
 - manter largura máxima de 520 px;
 - validar primeiro em 390×844;
 - repetir os cinco viewports antes de publicar.
-

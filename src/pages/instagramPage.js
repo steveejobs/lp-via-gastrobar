@@ -1,6 +1,38 @@
 import { MEDIA, SITE } from "../data/site.js";
 import { externalAttributes, icons } from "../components/ui/icons.js";
-import { responsiveImage } from "../components/ui/media.js";
+import { responsiveImage, smartVideo } from "../components/ui/media.js";
+
+function imageCycle(images, { eager = false } = {}) {
+  return `
+    <span class="instagram-cycle" data-instagram-cycle aria-hidden="true">
+      ${images
+        .map(
+          (image, index) => `
+            <span class="instagram-cycle__item${index === 0 ? " is-active" : ""}">
+              ${responsiveImage({
+                ...image,
+                alt: "",
+                loading: eager ? "eager" : "lazy",
+                fetchPriority: index === 0 && eager ? "high" : "auto",
+                sizes: "min(38vw, 198px)",
+              })}
+            </span>
+          `,
+        )
+        .join("")}
+    </span>
+  `;
+}
+
+function motionRailImage(image) {
+  return responsiveImage({
+    ...image,
+    alt: "",
+    loading: "lazy",
+    fetchPriority: "auto",
+    sizes: "150px",
+  });
+}
 
 function externalAction({
   className = "",
@@ -32,7 +64,7 @@ export function instagramPage() {
     <div data-page="instagram">
       <main id="conteudo" class="instagram-page">
         <div class="instagram-canvas">
-          <header class="instagram-profile">
+          <header class="instagram-profile" data-instagram-intro>
             <a class="instagram-profile__logo" href="/" aria-label="Via Gastrobar, site completo">
               <img
                 src="${MEDIA.logo.src}"
@@ -52,28 +84,44 @@ export function instagramPage() {
             </div>
           </header>
 
-          <section class="instagram-opening" aria-label="Uma prévia do Via Gastrobar">
-            <figure class="instagram-opening__main">
-              ${responsiveImage({
-                ...MEDIA.atmosphere[0],
-                loading: "eager",
-                fetchPriority: "high",
-                sizes: "min(80vw, 416px)",
+          <section class="instagram-opening" aria-label="Uma prévia em movimento do Via Gastrobar">
+            <figure class="instagram-opening__main" data-parallax="10">
+              ${smartVideo({
+                src: MEDIA.hero.video,
+                poster: MEDIA.hero.poster,
+                label: "Serviço de vinho no Via Gastrobar",
+                className: "instagram-opening__video",
+                preload: "metadata",
+                eager: true,
+                priority: true,
+                posterWidth: 720,
+                posterSizes: "min(62vw, 322px)",
+                loopStart: 0.4,
+                loopEnd: 11.8,
               })}
+              <figcaption>
+                <span>Em movimento</span>
+                <span class="instagram-live-dot" aria-hidden="true"></span>
+              </figcaption>
             </figure>
-            <figure>
-              ${responsiveImage({
-                ...MEDIA.bar.drink,
-                loading: "eager",
-                sizes: "min(38vw, 198px)",
-              })}
+            <figure aria-label="Drinks do Via Gastrobar" data-parallax="-7">
+              ${imageCycle(
+                [
+                  ...MEDIA.bar.drinks,
+                  MEDIA.bar.wines[2],
+                ],
+                { eager: true },
+              )}
             </figure>
-            <figure>
-              ${responsiveImage({
-                ...MEDIA.tableStories[0].main,
-                loading: "eager",
-                sizes: "min(38vw, 198px)",
-              })}
+            <figure aria-label="Pratos do Via Gastrobar" data-parallax="7">
+              ${imageCycle(
+                [
+                  MEDIA.tableStories[0].main.images[0],
+                  MEDIA.tableStories[2].main.images[0],
+                  ...MEDIA.sea,
+                ],
+                { eager: true },
+              )}
             </figure>
           </section>
 
@@ -113,50 +161,76 @@ export function instagramPage() {
             </a>
           </nav>
 
+          <section class="instagram-motion-rail" aria-hidden="true">
+            <div class="instagram-motion-rail__track">
+              ${[
+                MEDIA.atmosphere.main[0],
+                MEDIA.bar.drinks[0],
+                MEDIA.tableStories[2].main.images[0],
+                MEDIA.atmosphere.main[2],
+                MEDIA.bar.wines[1],
+                MEDIA.atmosphere.cellar,
+                MEDIA.atmosphere.main[0],
+                MEDIA.bar.drinks[0],
+                MEDIA.tableStories[2].main.images[0],
+                MEDIA.atmosphere.main[2],
+                MEDIA.bar.wines[1],
+                MEDIA.atmosphere.cellar,
+              ]
+                .map((image) => `<span>${motionRailImage(image)}</span>`)
+                .join("")}
+            </div>
+          </section>
+
           <section class="instagram-night" aria-labelledby="instagram-night-title">
-            <div class="instagram-section-heading">
+            <div class="instagram-section-heading" data-instagram-reveal="up">
               <p class="eyebrow">Antes de chegar</p>
               <h2 id="instagram-night-title">Entre no Via por alguns segundos.</h2>
             </div>
 
-            <div class="instagram-night__gallery">
-              <figure class="instagram-night__main">
-                ${responsiveImage({
-                  ...MEDIA.hero.salon,
-                  loading: "lazy",
-                  fetchPriority: "auto",
-                  sizes: "min(80vw, 416px)",
+            <div class="instagram-night__gallery" data-instagram-reveal="clip">
+              <figure class="instagram-night__main" data-parallax="13">
+                ${smartVideo({
+                  src: MEDIA.tableStories[1].main.src,
+                  poster: MEDIA.tableStories[1].main.poster,
+                  label: MEDIA.tableStories[1].main.label,
+                  className: "instagram-night__video",
+                  preload: "metadata",
+                  posterWidth: 720,
+                  posterSizes: "min(52vw, 270px)",
+                  loopStart: 0.2,
+                  loopEnd: 10.5,
                 })}
+                <figcaption>Do fogo à mesa</figcaption>
               </figure>
-              <figure>
-                ${responsiveImage({
-                  ...MEDIA.tableStories[2].main,
-                  sizes: "min(38vw, 198px)",
-                })}
+              <figure aria-label="Detalhes da experiência" data-parallax="-8">
+                ${imageCycle([
+                  MEDIA.atmosphere.main[1],
+                  MEDIA.atmosphere.support,
+                  MEDIA.atmosphere.cellar,
+                ])}
               </figure>
-              <figure>
-                ${responsiveImage({
-                  src: MEDIA.hero.poster,
-                  width: 720,
-                  height: 1280,
-                  alt: "Vinho sendo servido em uma taça",
-                  sizes: "min(38vw, 198px)",
-                })}
+              <figure aria-label="Pratos e serviço" data-parallax="8">
+                ${imageCycle([
+                  MEDIA.tableStories[2].main.images[1],
+                  MEDIA.tableStories[0].main.images[1],
+                  MEDIA.bar.wines[0],
+                ])}
               </figure>
             </div>
 
-            <p class="instagram-night__note">
+            <p class="instagram-night__note" data-instagram-reveal="left">
               Luz baixa, mesa posta e tempo para a conversa continuar.
             </p>
           </section>
 
           <section class="instagram-visit" aria-labelledby="instagram-visit-title">
-            <div class="instagram-section-heading">
+            <div class="instagram-section-heading" data-instagram-reveal="up">
               <p class="eyebrow">Para hoje</p>
               <h2 id="instagram-visit-title">Tudo o que você precisa antes de sair.</h2>
             </div>
 
-            <dl class="instagram-visit__facts">
+            <dl class="instagram-visit__facts" data-instagram-reveal="up">
               <div>
                 <dt>Funcionamento</dt>
                 <dd>${SITE.hours}</dd>
@@ -184,6 +258,7 @@ export function instagramPage() {
               href="${SITE.links.maps}"
               data-track="rota"
               ${externalAttributes("Abrir rota para o Via Gastrobar")}
+              data-instagram-reveal="up"
             >
               ${icons.map}
               <span>
@@ -195,14 +270,18 @@ export function instagramPage() {
           </section>
 
           <section class="instagram-closing" aria-labelledby="instagram-closing-title">
-            ${responsiveImage({
-              ...MEDIA.hero.room,
-              loading: "lazy",
-              fetchPriority: "auto",
-              sizes: "min(88vw, 458px)",
-              alt: "",
+            ${smartVideo({
+              src: MEDIA.closing.video,
+              poster: MEDIA.atmosphere.main[2].src,
+              label: "Ambiente do Via Gastrobar",
+              className: "instagram-closing__video",
+              preload: "metadata",
+              posterWidth: 1440,
+              posterSizes: "min(100vw, 520px)",
+              loopStart: 0.2,
+              loopEnd: 12,
             })}
-            <div class="instagram-closing__content">
+            <div class="instagram-closing__content" data-instagram-reveal="up">
               <p class="eyebrow">Sua mesa</p>
               <h2 id="instagram-closing-title">A noite está a uma mensagem de distância.</h2>
               <a

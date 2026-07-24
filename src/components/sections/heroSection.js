@@ -1,6 +1,6 @@
 import { MEDIA, SITE } from "../../data/site.js";
 import { externalAttributes, icons } from "../ui/icons.js";
-import { responsiveImage, smartVideo } from "../ui/media.js";
+import { smartVideo } from "../ui/media.js";
 
 export function heroSection() {
   return `
@@ -52,27 +52,15 @@ export function heroSection() {
       </div>
 
       <div class="hero-stage editorial-media" data-pointer-media>
-        <div class="hero-stage__light" aria-hidden="true"></div>
         <figure class="hero-stage__service">
           ${smartVideo({
             src: MEDIA.hero.video,
             poster: MEDIA.hero.poster,
-            label: "Serviço e atmosfera do Via Gastrobar",
+            label: "Vinho sendo servido no Via Gastrobar",
             className: "hero-video",
             preload: "metadata",
             priority: true,
-            loopStart: 0.15,
-            loopEnd: 6.4,
           })}
-          <figcaption>O primeiro serviço</figcaption>
-        </figure>
-        <figure class="hero-stage__room">
-          ${responsiveImage(MEDIA.hero.room)}
-          <figcaption>O bar espera</figcaption>
-        </figure>
-        <figure class="hero-stage__salon">
-          ${responsiveImage(MEDIA.hero.salon)}
-          <figcaption>Para chegar sem pressa</figcaption>
         </figure>
       </div>
 

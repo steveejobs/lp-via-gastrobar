@@ -1,3 +1,62 @@
+const textMotionSelector = [
+  ".hero__copy h1",
+  ".opening-note h2",
+  ".chapter-heading h2",
+  ".table-story__copy h3",
+  ".sea-note h3",
+  ".bar-composition__copy p",
+  ".reservation-bridge h2",
+  ".visit-section__content h2",
+].join(",");
+
+export function prepareTextMotion() {
+  document.querySelectorAll(textMotionSelector).forEach((element) => {
+    if (element.dataset.motionReady === "true") return;
+
+    const walker = document.createTreeWalker(
+      element,
+      NodeFilter.SHOW_TEXT,
+    );
+    const textNodes = [];
+    let currentNode = walker.nextNode();
+
+    while (currentNode) {
+      if (currentNode.textContent.trim()) textNodes.push(currentNode);
+      currentNode = walker.nextNode();
+    }
+
+    let letterIndex = 0;
+    textNodes.forEach((textNode) => {
+      const fragment = document.createDocumentFragment();
+      const parts = textNode.textContent.split(/(\s+)/);
+
+      parts.forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) {
+          fragment.append(document.createTextNode(part));
+          return;
+        }
+
+        const word = document.createElement("span");
+        word.className = "motion-word";
+        Array.from(part).forEach((letter) => {
+          const character = document.createElement("span");
+          character.className = "motion-letter";
+          character.style.setProperty("--letter-index", letterIndex);
+          character.textContent = letter;
+          word.append(character);
+          letterIndex += 1;
+        });
+        fragment.append(word);
+      });
+
+      textNode.replaceWith(fragment);
+    });
+
+    element.dataset.motionReady = "true";
+  });
+}
+
 export function initializeReveals() {
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const items = [...document.querySelectorAll(".reveal")];
@@ -31,4 +90,3 @@ export function initializeReveals() {
     .filter((item) => item.classList.contains("will-reveal"))
     .forEach((item) => observer.observe(item));
 }
-
