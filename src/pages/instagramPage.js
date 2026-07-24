@@ -1,11 +1,21 @@
 import { MEDIA, SITE } from "../data/site.js";
 import { externalAttributes, icons } from "../components/ui/icons.js";
+import { responsiveImage } from "../components/ui/media.js";
 
-function externalAction({ className = "", href, icon, title, meta, label }) {
+function externalAction({
+  className = "",
+  href,
+  icon,
+  title,
+  meta,
+  label,
+  track,
+}) {
   return `
     <a
       class="instagram-action ${className}"
       href="${href}"
+      ${track ? `data-track="${track}"` : ""}
       ${externalAttributes(label || title)}
     >
       <span class="instagram-action__icon">${icon}</span>
@@ -44,28 +54,26 @@ export function instagramPage() {
 
           <section class="instagram-opening" aria-label="Uma prévia do Via Gastrobar">
             <figure class="instagram-opening__main">
-              <img
-                src="/media/ambient-table.webp"
-                width="1440"
-                height="1920"
-                alt="Mesa posta no salão do Via Gastrobar"
-              />
+              ${responsiveImage({
+                ...MEDIA.atmosphere[0],
+                loading: "eager",
+                fetchPriority: "high",
+                sizes: "min(80vw, 416px)",
+              })}
             </figure>
             <figure>
-              <img
-                src="/media/drink-coffee.webp"
-                width="1440"
-                height="1440"
-                alt="Drink servido com luz quente"
-              />
+              ${responsiveImage({
+                ...MEDIA.bar.drink,
+                loading: "eager",
+                sizes: "min(38vw, 198px)",
+              })}
             </figure>
             <figure>
-              <img
-                src="/media/plate-steak-wide.webp"
-                width="1125"
-                height="1406"
-                alt="Prato servido no Via Gastrobar"
-              />
+              ${responsiveImage({
+                ...MEDIA.tableStories[0].main,
+                loading: "eager",
+                sizes: "min(38vw, 198px)",
+              })}
             </figure>
           </section>
 
@@ -77,6 +85,7 @@ export function instagramPage() {
               title: "Reservar mesa",
               meta: "Falar pelo WhatsApp",
               label: "Reservar mesa pelo WhatsApp",
+              track: "hero_reserva",
             })}
             ${externalAction({
               href: SITE.links.maps,
@@ -84,6 +93,7 @@ export function instagramPage() {
               title: "Traçar rota",
               meta: "Abrir no Google Maps",
               label: "Traçar rota no Google Maps",
+              track: "rota",
             })}
             ${externalAction({
               href: SITE.links.instagram,
@@ -91,6 +101,7 @@ export function instagramPage() {
               title: "Ver Instagram",
               meta: SITE.instagramHandle,
               label: "Abrir Instagram do Via Gastrobar",
+              track: "instagram",
             })}
             <a class="instagram-action" href="/">
               <span class="instagram-action__icon">${icons.home}</span>
@@ -110,34 +121,27 @@ export function instagramPage() {
 
             <div class="instagram-night__gallery">
               <figure class="instagram-night__main">
-                <img
-                  src="/media/ambient-salon.webp"
-                  width="1440"
-                  height="1920"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Salão com mesas e cadeiras verdes"
-                />
+                ${responsiveImage({
+                  ...MEDIA.hero.salon,
+                  loading: "lazy",
+                  fetchPriority: "auto",
+                  sizes: "min(80vw, 416px)",
+                })}
               </figure>
               <figure>
-                <img
-                  src="/media/plate-fish.webp"
-                  width="1440"
-                  height="1440"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Prato servido em louça verde"
-                />
+                ${responsiveImage({
+                  ...MEDIA.tableStories[2].main,
+                  sizes: "min(38vw, 198px)",
+                })}
               </figure>
               <figure>
-                <img
-                  src="/media/hero-service-poster.webp"
-                  width="720"
-                  height="1280"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Vinho sendo servido em uma taça"
-                />
+                ${responsiveImage({
+                  src: MEDIA.hero.poster,
+                  width: 720,
+                  height: 1280,
+                  alt: "Vinho sendo servido em uma taça",
+                  sizes: "min(38vw, 198px)",
+                })}
               </figure>
             </div>
 
@@ -167,13 +171,18 @@ export function instagramPage() {
               </div>
               <div>
                 <dt>Reservas</dt>
-                <dd><a href="${SITE.links.phone}">${SITE.phoneLabel}</a></dd>
+                <dd>
+                  <a href="${SITE.links.phone}" data-track="telefone">
+                    ${SITE.phoneLabel}
+                  </a>
+                </dd>
               </div>
             </dl>
 
             <a
               class="instagram-route"
               href="${SITE.links.maps}"
+              data-track="rota"
               ${externalAttributes("Abrir rota para o Via Gastrobar")}
             >
               ${icons.map}
@@ -186,20 +195,20 @@ export function instagramPage() {
           </section>
 
           <section class="instagram-closing" aria-labelledby="instagram-closing-title">
-            <img
-              src="/media/ambient-bar.webp"
-              width="1440"
-              height="1920"
-              loading="lazy"
-              decoding="async"
-              alt=""
-            />
+            ${responsiveImage({
+              ...MEDIA.hero.room,
+              loading: "lazy",
+              fetchPriority: "auto",
+              sizes: "min(88vw, 458px)",
+              alt: "",
+            })}
             <div class="instagram-closing__content">
               <p class="eyebrow">Sua mesa</p>
               <h2 id="instagram-closing-title">A noite está a uma mensagem de distância.</h2>
               <a
                 class="instagram-closing__button"
                 href="${SITE.links.whatsapp}"
+                data-track="final_reserva"
                 ${externalAttributes("Reservar mesa pelo WhatsApp")}
               >
                 ${icons.whatsapp}
@@ -219,7 +228,11 @@ export function instagramPage() {
             <p>${SITE.instagramHandle}</p>
             <nav aria-label="Links finais">
               <a href="/">Site completo</a>
-              <a href="${SITE.links.instagram}" ${externalAttributes("Instagram do Via Gastrobar")}>
+              <a
+                href="${SITE.links.instagram}"
+                data-track="instagram"
+                ${externalAttributes("Instagram do Via Gastrobar")}
+              >
                 Instagram
               </a>
             </nav>
@@ -228,11 +241,19 @@ export function instagramPage() {
       </main>
 
       <nav class="instagram-dock" data-instagram-dock aria-label="Ações rápidas">
-        <a href="${SITE.links.whatsapp}" ${externalAttributes("Reservar mesa pelo WhatsApp")}>
+        <a
+          href="${SITE.links.whatsapp}"
+          data-track="dock_reserva"
+          ${externalAttributes("Reservar mesa pelo WhatsApp")}
+        >
           ${icons.whatsapp}
           Reservar mesa
         </a>
-        <a href="${SITE.links.maps}" ${externalAttributes("Traçar rota no Google Maps")}>
+        <a
+          href="${SITE.links.maps}"
+          data-track="rota"
+          ${externalAttributes("Traçar rota no Google Maps")}
+        >
           ${icons.map}
           <span>Rota</span>
         </a>

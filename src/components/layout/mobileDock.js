@@ -6,6 +6,7 @@ export function mobileDock() {
     <nav class="mobile-dock" data-mobile-dock aria-label="Ações rápidas">
       <a
         href="${SITE.links.whatsapp}"
+        data-track="dock_reserva"
         ${externalAttributes("Reservar mesa pelo WhatsApp")}
       >
         Reservar mesa
@@ -13,6 +14,7 @@ export function mobileDock() {
       </a>
       <a
         href="${SITE.links.maps}"
+        data-track="rota"
         ${externalAttributes("Traçar rota no Google Maps")}
       >
         ${icons.map}
@@ -21,4 +23,3 @@ export function mobileDock() {
     </nav>
   `;
 }
-

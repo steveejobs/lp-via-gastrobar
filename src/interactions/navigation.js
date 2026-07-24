@@ -4,12 +4,36 @@ export function initializeNavigation() {
   const menu = document.querySelector("[data-mobile-menu]");
   const dock = document.querySelector("[data-mobile-dock]");
   const hero = document.querySelector("[data-hero]");
+  const inertWhenMenuOpen = [
+    document.querySelector("#conteudo"),
+    document.querySelector(".site-footer"),
+    dock,
+  ].filter(Boolean);
 
-  const setMenu = (open) => {
+  const menuFocusable = () =>
+    [
+      trigger,
+      ...menu.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ].filter((element) => element.getClientRects().length);
+
+  const setMenu = (open, restoreFocus = true) => {
     if (!trigger || !menu) return;
     trigger.setAttribute("aria-expanded", String(open));
     menu.setAttribute("aria-hidden", String(!open));
     document.body.classList.toggle("menu-open", open);
+    inertWhenMenuOpen.forEach((element) => {
+      element.inert = open;
+    });
+
+    if (open) {
+      window.requestAnimationFrame(() => {
+        menu.querySelector("a[href]")?.focus();
+      });
+    } else if (restoreFocus) {
+      trigger.focus();
+    }
   };
 
   trigger?.addEventListener("click", () => {
@@ -21,7 +45,29 @@ export function initializeNavigation() {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMenu(false);
+    const menuOpen = trigger?.getAttribute("aria-expanded") === "true";
+    if (event.key === "Escape" && menuOpen) {
+      event.preventDefault();
+      setMenu(false);
+      return;
+    }
+
+    if (event.key !== "Tab" || !menuOpen) return;
+
+    const focusable = menuFocusable();
+    const first = focusable[0];
+    const last = focusable.at(-1);
+
+    if (!focusable.includes(document.activeElement)) {
+      event.preventDefault();
+      first?.focus();
+    } else if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first?.focus();
+    }
   });
 
   const update = () => {
@@ -35,4 +81,3 @@ export function initializeNavigation() {
   update();
   window.addEventListener("scroll", update, { passive: true });
 }
-

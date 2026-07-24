@@ -1,11 +1,24 @@
 import { MEDIA, SITE } from "../../data/site.js";
 import { externalAttributes, icons } from "../ui/icons.js";
-import { responsiveImage } from "../ui/media.js";
+import { responsiveImage, smartVideo } from "../ui/media.js";
+
+function storyMedia(media) {
+  if (media.type === "video") {
+    return smartVideo({
+      src: media.src,
+      poster: media.poster,
+      label: media.label,
+    });
+  }
+
+  return responsiveImage(media);
+}
 
 function tableStory(story, index) {
   const reverse = index % 2 === 1 ? " table-story--reverse" : "";
+  const video = story.main.type === "video" ? " table-story--video" : "";
   return `
-    <article class="table-story${reverse} reveal" data-chapter-media>
+    <article class="table-story${reverse}${video} reveal" data-chapter-media>
       <div class="table-story__copy">
         <span>${story.index}</span>
         <h3>${story.title}</h3>
@@ -16,7 +29,7 @@ function tableStory(story, index) {
         data-pointer-media
         data-cursor-label="servir"
       >
-        ${responsiveImage(story.main)}
+        ${storyMedia(story.main)}
       </figure>
       <figure class="table-story__support editorial-media">
         ${responsiveImage(story.support)}
@@ -31,10 +44,10 @@ export function tableSection() {
       <div class="section-shell chapter-heading chapter-heading--split reveal">
         <div>
           <p class="eyebrow">A mesa em foco</p>
-          <h2 id="table-title">Uma cena de cada vez.</h2>
+          <h2 id="table-title">Pratos no centro da noite.</h2>
         </div>
         <p>
-          Três ensaios curtos. Uma imagem conduz; a segunda aproxima o detalhe.
+          Da cozinha à mesa, cada chegada convida a ficar mais um pouco.
         </p>
       </div>
 
@@ -45,10 +58,11 @@ export function tableSection() {
       <section class="sea-note section-shell reveal" aria-labelledby="sea-title">
         <div class="sea-note__copy">
           <p class="eyebrow">Mar & assinatura</p>
-          <h3 id="sea-title">Um recorte. Sem transformar a noite em catálogo.</h3>
+          <h3 id="sea-title">O mar também chega à mesa.</h3>
           <a
             class="text-link"
             href="${SITE.links.whatsapp}"
+            data-track="table_reserva"
             ${externalAttributes("Reservar mesa pelo WhatsApp")}
           >
             Reservar para hoje ${icons.arrow}

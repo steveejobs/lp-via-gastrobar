@@ -21,7 +21,7 @@ export function homePage() {
           <h2 id="opening-title">Chegue para jantar.<br />Fique pela noite.</h2>
           <div>
             <p>
-              O ambiente abre a cena. A mesa aproxima. O bar mantém a noite em movimento.
+              Mesas postas, pratos chegando e o bar em movimento.
             </p>
             <p>${"Todos os dias, a partir das 18h."}</p>
           </div>

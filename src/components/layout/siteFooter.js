@@ -18,11 +18,22 @@ export function siteFooter() {
         ${SITE.reference}
       </address>
       <nav aria-label="Links do rodapé">
-        <a href="${SITE.links.whatsapp}" ${externalAttributes("Reservas pelo WhatsApp")}>Reservas</a>
-        <a href="${SITE.links.maps}" ${externalAttributes("Rota no Google Maps")}>Rota</a>
-        <a href="${SITE.links.instagram}" ${externalAttributes("Instagram do Via Gastrobar")}>Instagram</a>
+        <a
+          href="${SITE.links.whatsapp}"
+          data-track="final_reserva"
+          ${externalAttributes("Reservas pelo WhatsApp")}
+        >Reservas</a>
+        <a
+          href="${SITE.links.maps}"
+          data-track="rota"
+          ${externalAttributes("Rota no Google Maps")}
+        >Rota</a>
+        <a
+          href="${SITE.links.instagram}"
+          data-track="instagram"
+          ${externalAttributes("Instagram do Via Gastrobar")}
+        >Instagram</a>
       </nav>
     </footer>
   `;
 }
-

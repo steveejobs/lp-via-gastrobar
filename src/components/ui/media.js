@@ -1,11 +1,35 @@
+function responsiveSrcSet(image) {
+  if (!image.src?.startsWith("/media/") || !image.src.endsWith(".webp")) {
+    return "";
+  }
+  const filename = image.src.split("/").at(-1).replace(/\.webp$/, "");
+  const candidates = [480, 960]
+    .filter((width) => width < image.width)
+    .map(
+      (width) => `/media/responsive/${filename}-${width}.webp ${width}w`,
+    );
+  return [...candidates, `${image.src} ${image.width}w`].join(", ");
+}
+
 export function responsiveImage(image, className = "") {
+  const srcset = responsiveSrcSet(image);
+  const loading = image.loading || "lazy";
+  const fetchPriority =
+    image.fetchPriority || (loading === "eager" ? "high" : "auto");
+
   return `
     <img
       class="${className}"
       src="${image.src}"
+      ${srcset ? `srcset="${srcset}"` : ""}
+      sizes="${
+        image.sizes ||
+        "(max-width: 560px) 88vw, (max-width: 900px) 48vw, 44vw"
+      }"
       width="${image.width}"
       height="${image.height}"
-      loading="lazy"
+      loading="${loading}"
+      fetchpriority="${fetchPriority}"
       decoding="async"
       alt="${image.alt}"
     />
@@ -19,6 +43,9 @@ export function smartVideo({
   className = "",
   preload = "none",
   eager = false,
+  priority = false,
+  posterWidth = 720,
+  posterSizes = "(max-width: 900px) 58vw, 44vw",
   loopStart,
   loopEnd,
 }) {
@@ -27,18 +54,54 @@ export function smartVideo({
     loopEnd !== undefined
       ? `data-loop-start="${loopStart || 0}" data-loop-end="${loopEnd}"`
       : "";
+  const posterFilename = poster
+    ?.split("/")
+    .at(-1)
+    .replace(/\.webp$/, "");
+  const posterSrcSet =
+    poster?.endsWith(".webp") && posterFilename
+      ? [
+          posterWidth > 480
+            ? `/media/responsive/${posterFilename}-480.webp 480w`
+            : "",
+          posterWidth > 960
+            ? `/media/responsive/${posterFilename}-960.webp 960w`
+            : "",
+          `${poster} ${posterWidth}w`,
+        ]
+          .filter(Boolean)
+          .join(", ")
+      : "";
+  const fallback = poster
+    ? `
+      <img
+        class="smart-video__fallback"
+        src="${poster}"
+        ${posterSrcSet ? `srcset="${posterSrcSet}"` : ""}
+        sizes="${posterSizes}"
+        alt=""
+        aria-hidden="true"
+        loading="${priority ? "eager" : "lazy"}"
+        fetchpriority="${priority ? "high" : "auto"}"
+        decoding="async"
+      />
+    `
+    : "";
 
   return `
-    <video
-      class="smart-video ${className}"
-      muted
-      playsinline
-      ${source}
-      ${segment}
-      preload="${preload}"
-      poster="${poster}"
-      aria-hidden="true"
-      data-media-label="${label}"
-    ></video>
+    <span class="smart-video-frame">
+      ${fallback}
+      <video
+        class="smart-video ${className}"
+        muted
+        playsinline
+        ${source}
+        ${segment}
+        preload="${preload}"
+        ${poster ? `poster="${poster}"` : ""}
+        aria-hidden="true"
+        data-media-label="${label}"
+      ></video>
+    </span>
   `;
 }

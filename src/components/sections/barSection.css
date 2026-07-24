@@ -46,6 +46,11 @@
 .bar-composition__wine {
   grid-column: 3;
   grid-row: 2;
+  background: #160f0d;
+}
+
+.bar-composition__wine img {
+  object-fit: contain;
 }
 
 .bar-composition__copy {
@@ -108,4 +113,3 @@
     font-size: 1.55rem;
   }
 }
-

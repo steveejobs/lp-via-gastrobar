@@ -39,6 +39,7 @@ export function barSection() {
           <a
             class="text-link"
             href="${SITE.links.whatsapp}"
+            data-track="bar_reserva"
             ${externalAttributes("Reservar mesa pelo WhatsApp")}
           >
             Reservar mesa ${icons.arrow}
@@ -48,4 +49,3 @@ export function barSection() {
     </section>
   `;
 }
-

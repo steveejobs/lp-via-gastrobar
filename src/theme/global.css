@@ -92,6 +92,34 @@
   background-size: 100% 1px;
 }
 
+.smart-video-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  background: var(--color-green-900);
+}
+
+.smart-video-frame > .smart-video__fallback,
+.smart-video-frame > .smart-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.smart-video-frame > .smart-video__fallback {
+  z-index: 0;
+}
+
+.smart-video-frame > .smart-video {
+  z-index: 1;
+  background: transparent;
+}
+
 .editorial-media {
   position: relative;
   overflow: hidden;
@@ -105,6 +133,7 @@
 .editorial-media::after {
   content: "";
   position: absolute;
+  z-index: 2;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
@@ -141,4 +170,3 @@
     min-height: 50px;
   }
 }
-

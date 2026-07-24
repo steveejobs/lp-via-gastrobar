@@ -68,7 +68,7 @@
   padding: 0 0.85rem;
   border: 1px solid rgba(216, 186, 149, 0.2);
   color: rgba(255, 249, 239, 0.72);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
 }
 
 .instagram-profile__status > span {
@@ -188,7 +188,7 @@
 
 .instagram-action__copy small {
   color: rgba(255, 249, 239, 0.52);
-  font-size: 0.62rem;
+  font-size: 0.7rem;
 }
 
 .instagram-action--primary .instagram-action__copy small {
@@ -292,7 +292,7 @@
 
 .instagram-visit__facts dt {
   color: var(--color-gold-500);
-  font-size: 0.58rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -342,7 +342,7 @@
 
 .instagram-route small {
   color: #4f5048;
-  font-size: 0.62rem;
+  font-size: 0.7rem;
 }
 
 .instagram-closing {
@@ -418,7 +418,7 @@
   padding: 2.5rem 20px;
   color: rgba(255, 249, 239, 0.52);
   background: var(--color-green-900);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   text-align: center;
 }
 

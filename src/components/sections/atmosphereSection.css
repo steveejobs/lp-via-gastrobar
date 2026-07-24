@@ -44,7 +44,9 @@
 }
 
 .atmosphere-composition__detail img {
-  object-position: 50% 33%;
+  object-fit: contain;
+  object-position: center;
+  background: #211612;
 }
 
 .atmosphere-composition__note {
@@ -94,4 +96,3 @@
     grid-template-rows: 360px 210px auto;
   }
 }
-

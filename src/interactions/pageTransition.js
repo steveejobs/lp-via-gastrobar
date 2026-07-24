@@ -21,11 +21,10 @@ export function initializePageTransitions() {
     document.documentElement.classList.add("is-leaving");
     window.setTimeout(() => {
       window.location.href = link.href;
-    }, 160);
+    }, 240);
   });
 
   window.addEventListener("pageshow", () => {
     document.documentElement.classList.remove("is-leaving");
   });
 }
-

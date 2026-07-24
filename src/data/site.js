@@ -1,3 +1,6 @@
+const WHATSAPP_MESSAGE =
+  "Olá! Vim pelo site do Via Gastrobar e gostaria de reservar uma mesa.";
+
 export const SITE = {
   name: "Via Gastrobar",
   instagramHandle: "@viagastrobar",
@@ -6,7 +9,9 @@ export const SITE = {
   hours: "Todos os dias, a partir das 18h",
   phoneLabel: "(63) 99139-4000",
   links: {
-    whatsapp: "https://api.whatsapp.com/send?phone=5563991394000",
+    whatsapp: `https://api.whatsapp.com/send?phone=5563991394000&text=${encodeURIComponent(
+      WHATSAPP_MESSAGE,
+    )}`,
     maps: "https://maps.app.goo.gl/jis5grnFQH36mhWs7",
     instagram: "https://www.instagram.com/viagastrobar/",
     phone: "tel:+5563991394000",
@@ -23,15 +28,31 @@ export const NAVIGATION = [
 
 export const MEDIA = {
   logo: {
-    src: "/media/logo.webp",
+    src: "/media/logo-transparent.png",
     width: 856,
     height: 856,
   },
   hero: {
     video: "/media/hero-service.mp4",
     poster: "/media/hero-service-poster.webp",
-    room: "/media/ambient-table.webp",
-    salon: "/media/ambient-salon.webp",
+    room: {
+      src: "/media/ambient-bar.webp",
+      width: 1440,
+      height: 1920,
+      alt: "Bar do Via Gastrobar",
+      sizes: "(max-width: 900px) 38vw, 24vw",
+      loading: "eager",
+      fetchPriority: "high",
+    },
+    salon: {
+      src: "/media/ambient-salon.webp",
+      width: 1440,
+      height: 1920,
+      alt: "Salão do Via Gastrobar",
+      sizes: "(max-width: 900px) 44vw, 28vw",
+      loading: "eager",
+      fetchPriority: "high",
+    },
   },
   atmosphere: [
     {
@@ -78,13 +99,13 @@ export const MEDIA = {
     {
       id: "ritmo",
       index: "02",
-      title: "Outro ritmo",
-      copy: "Mudam o enquadramento e a textura. A mesa continua sendo o centro.",
+      title: "Do fogo à mesa",
+      copy: "O preparo ganha movimento antes de chegar à mesa.",
       main: {
-        src: "/media/plate-lamb-wide.webp",
-        width: 1440,
-        height: 1800,
-        alt: "Prato em louça verde fotografado de cima",
+        type: "video",
+        src: "/media/plate-lamb-prep.mp4",
+        poster: "/media/plate-lamb-prep-poster.webp",
+        label: "Preparo de um prato do Via Gastrobar",
       },
       support: {
         src: "/media/plate-lamb-close.webp",
@@ -97,7 +118,7 @@ export const MEDIA = {
       id: "servico",
       index: "03",
       title: "Servido sem pressa",
-      copy: "Uma composição principal e um detalhe bastam para apresentar a cena.",
+      copy: "Da cozinha à mesa, a noite encontra mais um motivo para ficar.",
       main: {
         src: "/media/plate-fish.webp",
         width: 1440,
@@ -122,12 +143,12 @@ export const MEDIA = {
   ],
   bar: {
     video: "/media/drink-prep.mp4",
-    poster: "/media/drink-lime.webp",
+    poster: "/media/drink-prep-poster.webp",
     drink: {
-      src: "/media/drink-coffee.webp",
+      src: "/media/drink-lime.webp",
       width: 1440,
       height: 1440,
-      alt: "Drink âmbar servido com luz quente",
+      alt: "Drink de limão servido no Via Gastrobar",
     },
     wine: {
       src: "/media/wine-service-02.webp",

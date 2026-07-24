@@ -142,7 +142,7 @@ visual/folhas de contato e dimensões reais.
 
 | Família | Originais | Uso atual |
 | --- | --- | --- |
-| Identidade | `logo completo.jpg`, `video para animação.mp4` | logo e hero |
+| Identidade | `public/media/logo-transparent.png`, `video para animação.mp4` | logo e hero |
 | Ambiente | `ambiente (1..5).jpg` | cinco imagens renomeadas; três em destaque |
 | Prato 1 | `prato 1 (1..4).jpg` | duas imagens selecionadas |
 | Prato 2 | `prato 2 (1..4).jpg` | mantido no acervo, fora da publicação |

@@ -9,6 +9,8 @@ export function visitSection() {
         ${smartVideo({
           src: MEDIA.closing.video,
           poster: MEDIA.closing.poster,
+          posterWidth: 1440,
+          posterSizes: "(max-width: 900px) 100vw, 50vw",
           label: "Vista do local do Via Gastrobar",
         })}
         <div class="visit-section__media-copy" aria-hidden="true">
@@ -35,7 +37,11 @@ export function visitSection() {
           </div>
           <div>
             <dt>Reservas</dt>
-            <dd><a href="${SITE.links.phone}">${SITE.phoneLabel}</a></dd>
+            <dd>
+              <a href="${SITE.links.phone}" data-track="telefone">
+                ${SITE.phoneLabel}
+              </a>
+            </dd>
           </div>
         </dl>
 
@@ -43,6 +49,7 @@ export function visitSection() {
           <a
             class="button button--primary magnetic"
             href="${SITE.links.whatsapp}"
+            data-track="final_reserva"
             ${externalAttributes("Reservar mesa pelo WhatsApp")}
           >
             Reservar mesa ${icons.arrow}
@@ -50,6 +57,7 @@ export function visitSection() {
           <a
             class="button button--secondary"
             href="${SITE.links.maps}"
+            data-track="rota"
             ${externalAttributes("Traçar rota no Google Maps")}
           >
             Traçar rota
@@ -59,6 +67,7 @@ export function visitSection() {
         <a
           class="visit-section__instagram"
           href="${SITE.links.instagram}"
+          data-track="instagram"
           ${externalAttributes("Instagram do Via Gastrobar")}
         >
           <span>Ver Instagram</span>
@@ -69,4 +78,3 @@ export function visitSection() {
     </section>
   `;
 }
-

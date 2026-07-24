@@ -1,6 +1,6 @@
 import { MEDIA, SITE } from "../../data/site.js";
 import { externalAttributes, icons } from "../ui/icons.js";
-import { smartVideo } from "../ui/media.js";
+import { responsiveImage, smartVideo } from "../ui/media.js";
 
 export function heroSection() {
   return `
@@ -23,6 +23,7 @@ export function heroSection() {
           <a
             class="button button--primary magnetic"
             href="${SITE.links.whatsapp}"
+            data-track="hero_reserva"
             ${externalAttributes("Reservar mesa pelo WhatsApp")}
           >
             <span>Reservar mesa</span>
@@ -31,6 +32,7 @@ export function heroSection() {
           <a
             class="button button--secondary"
             href="${SITE.links.maps}"
+            data-track="rota"
             ${externalAttributes("Traçar rota no Google Maps")}
           >
             Traçar rota
@@ -39,8 +41,8 @@ export function heroSection() {
 
         <dl class="hero__facts">
           <div>
-            <dt>Hoje</dt>
-            <dd>A partir das 18h</dd>
+            <dt>Funcionamento</dt>
+            <dd>Todos os dias · a partir das 18h</dd>
           </div>
           <div>
             <dt>Onde</dt>
@@ -58,27 +60,18 @@ export function heroSection() {
             label: "Serviço e atmosfera do Via Gastrobar",
             className: "hero-video",
             preload: "metadata",
+            priority: true,
             loopStart: 0.15,
             loopEnd: 6.4,
           })}
           <figcaption>O primeiro serviço</figcaption>
         </figure>
         <figure class="hero-stage__room">
-          <img
-            src="${MEDIA.hero.room}"
-            width="1440"
-            height="1920"
-            alt="Mesa posta no salão do Via Gastrobar"
-          />
-          <figcaption>Mesa posta</figcaption>
+          ${responsiveImage(MEDIA.hero.room)}
+          <figcaption>O bar espera</figcaption>
         </figure>
         <figure class="hero-stage__salon">
-          <img
-            src="${MEDIA.hero.salon}"
-            width="1440"
-            height="1920"
-            alt="Salão do Via Gastrobar"
-          />
+          ${responsiveImage(MEDIA.hero.salon)}
           <figcaption>Para chegar sem pressa</figcaption>
         </figure>
       </div>

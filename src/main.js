@@ -8,6 +8,7 @@ import { initializeInstagramPage } from "./interactions/instagram.js";
 import { initializePageTransitions } from "./interactions/pageTransition.js";
 import { initializePointerInteractions } from "./interactions/pointer.js";
 import { initializeReveals } from "./interactions/reveal.js";
+import { initializeTracking } from "./interactions/tracking.js";
 import { initializeVideos } from "./interactions/videos.js";
 import { homePage } from "./pages/homePage.js";
 import { instagramPage } from "./pages/instagramPage.js";
@@ -43,3 +44,4 @@ if (isInstagram) {
 }
 
 initializePageTransitions();
+initializeTracking();

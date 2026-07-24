@@ -26,6 +26,7 @@ export function siteHeader() {
       <a
         class="header-reservation"
         href="${SITE.links.whatsapp}"
+        data-track="header_reserva"
         ${externalAttributes("Reservar mesa pelo WhatsApp")}
       >
         Reservar
@@ -45,7 +46,15 @@ export function siteHeader() {
       </button>
     </header>
 
-    <div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
+    <div
+      class="mobile-menu"
+      id="mobile-menu"
+      data-mobile-menu
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu principal"
+      aria-hidden="true"
+    >
       <nav aria-label="Navegação mobile">
         ${navigationLinks()}
       </nav>
@@ -53,6 +62,7 @@ export function siteHeader() {
         <a
           class="button button--primary"
           href="${SITE.links.whatsapp}"
+          data-track="header_reserva"
           ${externalAttributes("Reservar mesa pelo WhatsApp")}
         >
           Reservar mesa ${icons.arrow}
@@ -60,6 +70,7 @@ export function siteHeader() {
         <a
           class="button button--secondary"
           href="${SITE.links.maps}"
+          data-track="rota"
           ${externalAttributes("Traçar rota no Google Maps")}
         >
           Traçar rota

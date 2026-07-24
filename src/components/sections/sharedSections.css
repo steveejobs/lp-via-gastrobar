@@ -31,7 +31,7 @@
 .action-bar span {
   grid-row: 1 / span 2;
   color: #44504a;
-  font-size: 0.56rem;
+  font-size: 0.7rem;
   letter-spacing: 0.15em;
 }
 
@@ -41,7 +41,7 @@
 
 .action-bar small {
   color: #44504a;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
 }
 
 .opening-note {
@@ -170,7 +170,7 @@
   }
 
   .action-bar small {
-    font-size: 0.58rem;
+    font-size: 0.7rem;
   }
 
   .opening-note {
