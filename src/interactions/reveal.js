@@ -125,6 +125,21 @@ export function initializeMediaSequences() {
   if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
 
   const visibleSequences = new Set();
+  const advanceSequence = (sequence) => {
+    const items = [...sequence.querySelectorAll(".media-sequence__item")];
+    if (items.length < 2) return;
+
+    const currentIndex = Math.max(
+      0,
+      items.findIndex((item) =>
+        item.classList.contains("is-sequence-current"),
+      ),
+    );
+    const nextIndex = (currentIndex + 1) % items.length;
+    items[currentIndex].classList.remove("is-sequence-current");
+    items[nextIndex].classList.add("is-sequence-current");
+  };
+
   const updateSequence = (sequence) => {
     sequence.classList.toggle(
       "is-sequence-active",
@@ -144,6 +159,11 @@ export function initializeMediaSequences() {
   );
 
   sequences.forEach((sequence) => observer.observe(sequence));
+  window.setInterval(() => {
+    if (document.hidden) return;
+    visibleSequences.forEach(advanceSequence);
+  }, 6000);
+
   document.addEventListener("visibilitychange", () => {
     sequences.forEach(updateSequence);
   });

@@ -62,10 +62,10 @@ export function responsiveImageSequence(
                 image.sizes ||
                 "(max-width: 560px) 88vw, (max-width: 900px) 46vw, 30vw",
             },
-            "media-sequence__item",
+            `media-sequence__item${index === 0 ? " is-sequence-current" : ""}`,
           ).replace(
-            'class="media-sequence__item"',
-            `class="media-sequence__item" style="--sequence-index: ${index}; --sequence-delay: -${index * 7}s" aria-hidden="true"`,
+            `class="media-sequence__item${index === 0 ? " is-sequence-current" : ""}"`,
+            `class="media-sequence__item${index === 0 ? " is-sequence-current" : ""}" aria-hidden="true"`,
           ),
         )
         .join("")}

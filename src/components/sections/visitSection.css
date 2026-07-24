@@ -1,7 +1,7 @@
 .visit-section {
   min-height: 780px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: min(50vw, 720px) 1fr;
   padding: 0;
   background: #1d1411;
 }
@@ -31,7 +31,7 @@
   z-index: 2;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(22, 11, 8, 0.55), transparent 50%);
+  background: linear-gradient(to top, rgba(22, 11, 8, 0.34), transparent 52%);
 }
 
 .visit-section__media-copy {
@@ -52,6 +52,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.9rem, 3.2vw, 3.2rem);
   line-height: 1.06;
+  text-shadow: 0 2px 24px rgba(10, 5, 3, 0.42);
 }
 
 .visit-section__content {
