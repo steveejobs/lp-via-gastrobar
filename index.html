@@ -13,21 +13,49 @@
       property="og:description"
       content="Luz baixa, bebida servida e tempo para ficar."
     />
-    <meta property="og:image" content="/media/ambient-table.jpg" />
+    <meta property="og:image" content="/media/ambient-table.webp" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content="https://lp-via-gastrobar.vercel.app/" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://lp-via-gastrobar.vercel.app/" />
     <title>Via Gastrobar</title>
-    <link rel="icon" href="/media/logo.jpg" type="image/jpeg" />
+    <link rel="icon" href="/media/logo.webp" type="image/webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Italiana&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Via Gastrobar",
+        "url": "https://lp-via-gastrobar.vercel.app/",
+        "telephone": "+55 63 99139-4000",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua Ipameri, loteamento Dona Nelcia, 3287"
+        },
+        "sameAs": ["https://www.instagram.com/viagastrobar/"]
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
     <div id="app"></div>
-    <noscript>Ative o JavaScript para visualizar esta página.</noscript>
+    <noscript>
+      <main>
+        <h1>Via Gastrobar</h1>
+        <p>Todos os dias, a partir das 18h.</p>
+        <p>Rua Ipameri, loteamento Dona Nelcia, 3287. Ao lado do Via Filadélfia.</p>
+        <p>
+          <a href="https://api.whatsapp.com/send?phone=5563991394000">Reservar mesa</a>
+          <a href="https://maps.app.goo.gl/jis5grnFQH36mhWs7">Traçar rota</a>
+        </p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

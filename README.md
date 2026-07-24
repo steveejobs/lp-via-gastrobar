@@ -36,11 +36,27 @@ as mídias versionadas.
 ## Estrutura
 
 ```text
-public/media/   imagens e vídeos curados
-src/main.js     conteúdo, rotas e interações
-src/styles.css  direção visual responsiva
-vercel.json     rotas e cache no Vercel
+public/media/     imagens WebP e vídeos curados
+src/components/   layout, seções e UI
+src/data/         fonte única de dados e inventário publicado
+src/interactions/ navegação, motion, vídeo e pointer
+src/pages/        home e rota /instagram
+src/theme/        tokens e tema visual centralizado
+tools/            auditoria, inventário e otimização de mídia
+vercel.json       rotas e cache no Vercel
 ```
 
 Os arquivos originais da galeria continuam preservados na raiz, mas são
 ignorados no upload pelo `.vercelignore`.
+
+## Auditoria e contexto
+
+- `PROJECT_CONTEXT.md`: decisões, arquitetura e estado do projeto.
+- `docs/AUDITORIA_PROFISSIONAL.md`: auditoria visual, estratégica, técnica e
+  plano de implementação.
+
+```bash
+npm run audit:media
+npm run audit:visual
+python tools/optimize_images.py --help
+```

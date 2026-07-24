@@ -1,0 +1,88 @@
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.will-reveal {
+  opacity: 0.001;
+  transform: translate3d(0, 24px, 0);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-slow) var(--ease-editorial),
+    transform var(--motion-slow) var(--ease-editorial);
+}
+
+.is-ready .hero-stage__light {
+  animation: hero-light var(--motion-cinematic) var(--ease-editorial) 120ms both;
+}
+
+.is-ready .hero-stage__service {
+  animation: hero-frame var(--motion-cinematic) var(--ease-editorial) 100ms both;
+}
+
+.is-ready .hero-stage__room,
+.is-ready .hero-stage__salon {
+  animation: hero-support var(--motion-slow) var(--ease-editorial) 420ms both;
+}
+
+@keyframes hero-light {
+  from {
+    transform: translate3d(-110%, 0, 0);
+  }
+  to {
+    transform: translate3d(120%, 0, 0);
+  }
+}
+
+@keyframes hero-frame {
+  from {
+    clip-path: inset(0 43% 0 43%);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes hero-support {
+  from {
+    opacity: 0.45;
+    transform: translate3d(-14px, 10px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+html {
+  opacity: 1;
+  transition: opacity 160ms ease;
+}
+
+html.is-leaving {
+  opacity: 0.01;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .reveal,
+  .reveal.will-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+

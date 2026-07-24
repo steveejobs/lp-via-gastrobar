@@ -1,0 +1,52 @@
+:root {
+  color-scheme: dark;
+
+  /* Paleta extraída do logo completo */
+  --color-green-900: #0c1d1b;
+  --color-green-800: #132926;
+  --color-green-700: #25433c;
+  --color-gold-500: #d8ba95;
+  --color-gold-400: #dfc099;
+  --color-gold-muted: #989174;
+  --color-cream-100: #f0dfc8;
+  --color-cream-200: #e9dcc9;
+  --color-wood-700: #542b1d;
+  --color-wood-900: #241512;
+  --color-charcoal: #091412;
+  --color-text: #fff9ef;
+  --color-text-muted: rgba(255, 249, 239, 0.66);
+
+  --font-display: "Italiana", "Times New Roman", serif;
+  --font-interface: "DM Sans", Arial, sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4.5rem;
+  --space-8: 7rem;
+  --space-9: 10rem;
+
+  --motion-fast: 220ms;
+  --motion-standard: 480ms;
+  --motion-slow: 760ms;
+  --motion-cinematic: 1200ms;
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-liquid: cubic-bezier(0.45, 0, 0.2, 1);
+
+  --shell: min(88vw, 1320px);
+  --header-height: 92px;
+  --border-subtle: 1px solid rgba(216, 186, 149, 0.17);
+  --shadow-media: 0 28px 80px rgba(2, 12, 10, 0.28);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --shell: calc(100% - 40px);
+    --header-height: 72px;
+  }
+}
+

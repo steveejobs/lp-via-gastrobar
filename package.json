@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "preview": "vite preview --host 0.0.0.0",
+    "audit:visual": "node tools/visual-audit.cjs",
+    "audit:media": "node tools/media-inventory.cjs",
+    "media:poster": "node tools/extract-video-poster.cjs"
   },
   "engines": {
     "node": ">=22.12.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "playwright": "^1.61.1",
     "vite": "^8.1.5"
   }
 }

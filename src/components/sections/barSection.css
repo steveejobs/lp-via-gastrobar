@@ -1,0 +1,111 @@
+.bar-section {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 70%, rgba(164, 95, 46, 0.18), transparent 28%),
+    var(--color-wood-900);
+}
+
+.bar-composition {
+  min-height: 760px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.68fr 0.75fr;
+  grid-template-rows: 1fr 0.78fr;
+  gap: 1.25rem;
+}
+
+.bar-composition__video {
+  grid-row: 1 / -1;
+}
+
+.bar-composition__video::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(25, 10, 6, 0.68), transparent 45%),
+    linear-gradient(105deg, transparent 45%, rgba(255, 219, 178, 0.08), transparent 60%);
+}
+
+.bar-composition__video figcaption {
+  position: absolute;
+  z-index: 3;
+  left: 1.6rem;
+  bottom: 1.5rem;
+  color: var(--color-cream-100);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.7vw, 2.8rem);
+}
+
+.bar-composition__drink {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.bar-composition__wine {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.bar-composition__copy {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  padding: 2.4vw;
+}
+
+.bar-composition__copy p {
+  color: rgba(255, 249, 239, 0.72);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.6vw, 2.8rem);
+  line-height: 1.14;
+}
+
+.bar-composition__copy .text-link {
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .bar-composition {
+    min-height: 700px;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: 390px 220px auto;
+    gap: 0.8rem;
+  }
+
+  .bar-composition__video {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .bar-composition__drink {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .bar-composition__wine {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .bar-composition__copy {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    padding: 2.5rem 0 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .bar-composition {
+    min-height: auto;
+    grid-template-rows: 340px 170px auto;
+  }
+
+  .bar-composition__video figcaption {
+    left: 1rem;
+    bottom: 1rem;
+    font-size: 1.55rem;
+  }
+}
+

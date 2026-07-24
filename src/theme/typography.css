@@ -1,0 +1,52 @@
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(4rem, 6vw, 6.75rem);
+  line-height: 0.88;
+}
+
+h2 {
+  font-size: clamp(3.25rem, 5.6vw, 5.6rem);
+  line-height: 0.94;
+}
+
+h3 {
+  font-size: clamp(2.35rem, 3.7vw, 4.2rem);
+  line-height: 0.98;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  color: var(--color-gold-500);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+@media (max-width: 560px) {
+  h1 {
+    font-size: clamp(3.1rem, 13.2vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(2.8rem, 12.5vw, 4rem);
+  }
+
+  h3 {
+    font-size: clamp(2.2rem, 10.5vw, 3.4rem);
+  }
+}
+
