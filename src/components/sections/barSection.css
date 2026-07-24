@@ -6,15 +6,17 @@
 }
 
 .bar-composition {
-  min-height: 760px;
   display: grid;
-  grid-template-columns: 1.1fr 0.68fr 0.75fr;
-  grid-template-rows: 1fr 0.78fr;
-  gap: 1.25rem;
+  grid-template-columns: minmax(250px, 320px) 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: clamp(0.8rem, 1.5vw, 1.25rem);
 }
 
 .bar-composition__video {
   grid-row: 1 / -1;
+  width: 100%;
+  aspect-ratio: 9 / 16;
 }
 
 .bar-composition__video::before {
@@ -41,23 +43,27 @@
 .bar-composition__drink {
   grid-column: 2;
   grid-row: 1;
+  aspect-ratio: 1;
 }
 
 .bar-composition__wine {
   grid-column: 3;
-  grid-row: 2;
+  grid-row: 1;
+  aspect-ratio: 1;
   background: #160f0d;
 }
 
-.bar-composition__wine img {
+.bar-composition img,
+.bar-composition video {
   object-fit: contain;
+  background: #160f0d;
 }
 
 .bar-composition__copy {
-  grid-column: 2;
+  grid-column: 2 / -1;
   grid-row: 2;
   align-self: center;
-  padding: 2.4vw;
+  padding: clamp(1.5rem, 2.5vw, 2.4rem) 0 0;
 }
 
 .bar-composition__copy p {
@@ -73,9 +79,8 @@
 
 @media (max-width: 900px) {
   .bar-composition {
-    min-height: 700px;
-    grid-template-columns: 1.15fr 0.85fr;
-    grid-template-rows: 390px 220px auto;
+    grid-template-columns: minmax(155px, 190px) 1fr;
+    grid-template-rows: auto auto auto;
     gap: 0.8rem;
   }
 
@@ -97,19 +102,18 @@
   .bar-composition__copy {
     grid-column: 1 / -1;
     grid-row: 3;
-    padding: 2.5rem 0 0;
+    padding: 2rem 0 0;
   }
 }
 
 @media (max-width: 560px) {
-  .bar-composition {
-    min-height: auto;
-    grid-template-rows: 340px 170px auto;
-  }
-
   .bar-composition__video figcaption {
     left: 1rem;
     bottom: 1rem;
     font-size: 1.55rem;
+  }
+
+  .bar-composition__copy p {
+    font-size: clamp(1.65rem, 8vw, 2.2rem);
   }
 }

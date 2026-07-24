@@ -43,6 +43,10 @@ export function prepareTextMotion() {
           const character = document.createElement("span");
           character.className = "motion-letter";
           character.style.setProperty("--letter-index", letterIndex);
+          character.style.setProperty(
+            "--letter-delay",
+            `${letterIndex * 14}ms`,
+          );
           character.textContent = letter;
           word.append(character);
           letterIndex += 1;
@@ -73,20 +77,43 @@ export function initializeReveals() {
     }
   });
 
-  const observer = new IntersectionObserver(
+  const pendingItems = new Set(
+    items.filter((item) => item.classList.contains("will-reveal")),
+  );
+  let fallbackFrame = 0;
+  let observer;
+
+  const revealItem = (item) => {
+    item.classList.add("is-visible");
+    item.classList.remove("will-reveal");
+    pendingItems.delete(item);
+    observer?.unobserve(item);
+  };
+
+  observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
-          entry.target.classList.add("is-visible");
-          entry.target.classList.remove("will-reveal");
-          observer.unobserve(entry.target);
+          revealItem(entry.target);
         }
       });
     },
     { rootMargin: "0px 0px -5% 0px", threshold: 0.05 },
   );
 
-  items
-    .filter((item) => item.classList.contains("will-reveal"))
-    .forEach((item) => observer.observe(item));
+  pendingItems.forEach((item) => observer.observe(item));
+
+  const revealPassedItems = () => {
+    window.cancelAnimationFrame(fallbackFrame);
+    fallbackFrame = window.requestAnimationFrame(() => {
+      pendingItems.forEach((item) => {
+        if (item.getBoundingClientRect().top < window.innerHeight * 0.94) {
+          revealItem(item);
+        }
+      });
+    });
+  };
+
+  window.addEventListener("scroll", revealPassedItems, { passive: true });
+  window.addEventListener("resize", revealPassedItems, { passive: true });
 }

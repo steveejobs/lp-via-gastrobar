@@ -1,8 +1,39 @@
 import { initializeVideos } from "./videos.js";
 
 export function initializeInstagramPage() {
+  const canvas = document.querySelector(".instagram-canvas");
   const dock = document.querySelector("[data-instagram-dock]");
+  const status = document.querySelector("[data-instagram-status]");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (!reducedMotion.matches && window.scrollY < 48) {
+    canvas?.classList.add("has-intro-motion");
+    window.setTimeout(
+      () => canvas?.classList.remove("has-intro-motion"),
+      3400,
+    );
+  }
+
+  let statusTimer = 0;
+  const updateStatus = () => {
+    const now = new Date();
+    const isOpen = now.getHours() >= 18;
+
+    status?.classList.toggle("is-open", isOpen);
+    status?.classList.toggle("is-closed", !isOpen);
+    status?.setAttribute(
+      "aria-label",
+      `${status.textContent.trim()}. ${isOpen ? "Aberto agora" : "Abre às 18h"}.`,
+    );
+
+    window.clearTimeout(statusTimer);
+    statusTimer = window.setTimeout(
+      updateStatus,
+      (60 - now.getSeconds()) * 1000 - now.getMilliseconds() + 50,
+    );
+  };
+
+  updateStatus();
 
   const updateDock = () => {
     dock?.classList.toggle("is-visible", window.scrollY > 560);
@@ -14,23 +45,32 @@ export function initializeInstagramPage() {
   initializeVideos();
 
   const revealItems = [...document.querySelectorAll("[data-instagram-reveal]")];
+  const showReveal = (item) => {
+    item.classList.add("is-in-view");
+    item.classList.remove("is-before");
+  };
+
   if (reducedMotion.matches || !("IntersectionObserver" in window)) {
-    revealItems.forEach((item) => item.classList.add("is-in-view"));
+    revealItems.forEach(showReveal);
   } else {
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle("is-in-view", entry.isIntersecting);
-          entry.target.classList.toggle(
-            "is-before",
-            !entry.isIntersecting && entry.boundingClientRect.bottom <= 0,
-          );
+          if (!entry.isIntersecting) return;
+          showReveal(entry.target);
+          revealObserver.unobserve(entry.target);
         });
       },
       { rootMargin: "-6% 0px -8% 0px", threshold: [0, 0.12, 0.45] },
     );
 
-    revealItems.forEach((item) => revealObserver.observe(item));
+    revealItems.forEach((item) => {
+      if (item.getBoundingClientRect().top < innerHeight * 0.94) {
+        showReveal(item);
+      } else {
+        revealObserver.observe(item);
+      }
+    });
   }
 
   const cycles = [...document.querySelectorAll("[data-instagram-cycle]")];
@@ -119,7 +159,22 @@ export function initializeInstagramPage() {
     parallaxFrame = requestAnimationFrame(updateParallax);
   };
 
+  const restoreVisualState = () => {
+    updateDock();
+    revealItems
+      .filter((item) => item.getBoundingClientRect().top < innerHeight)
+      .forEach(showReveal);
+    cycles
+      .filter((cycle) => {
+        const bounds = cycle.getBoundingClientRect();
+        return bounds.bottom > -80 && bounds.top < innerHeight + 80;
+      })
+      .forEach(startCycle);
+    requestParallax();
+  };
+
   updateParallax();
   window.addEventListener("scroll", requestParallax, { passive: true });
   window.addEventListener("resize", requestParallax, { passive: true });
+  window.addEventListener("pageshow", restoreVisualState);
 }

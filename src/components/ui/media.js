@@ -60,7 +60,7 @@ export function responsiveImageSequence(
             "media-sequence__item",
           ).replace(
             'class="media-sequence__item"',
-            `class="media-sequence__item" style="--sequence-index: ${index}" aria-hidden="true"`,
+            `class="media-sequence__item" style="--sequence-index: ${index}; --sequence-delay: -${index * 7}s" aria-hidden="true"`,
           ),
         )
         .join("")}

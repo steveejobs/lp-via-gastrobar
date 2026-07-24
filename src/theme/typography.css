@@ -9,18 +9,18 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(4rem, 6vw, 6.75rem);
-  line-height: 0.88;
+  font-size: clamp(3.7rem, 5.4vw, 6.05rem);
+  line-height: 0.9;
 }
 
 h2 {
-  font-size: clamp(3.25rem, 5.6vw, 5.6rem);
-  line-height: 0.94;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 0.96;
 }
 
 h3 {
-  font-size: clamp(2.35rem, 3.7vw, 4.2rem);
-  line-height: 0.98;
+  font-size: clamp(2.15rem, 3.3vw, 3.75rem);
+  line-height: 1;
 }
 
 p {
@@ -38,14 +38,14 @@ p {
 
 @media (max-width: 560px) {
   h1 {
-    font-size: clamp(3.1rem, 13.2vw, 4rem);
+    font-size: clamp(2.95rem, 12vw, 3.7rem);
   }
 
   h2 {
-    font-size: clamp(2.8rem, 12.5vw, 4rem);
+    font-size: clamp(2.65rem, 11.5vw, 3.65rem);
   }
 
   h3 {
-    font-size: clamp(2.2rem, 10.5vw, 3.4rem);
+    font-size: clamp(2.05rem, 9.6vw, 3.1rem);
   }
 }

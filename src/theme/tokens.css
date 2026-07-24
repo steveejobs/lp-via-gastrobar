@@ -37,8 +37,8 @@
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-liquid: cubic-bezier(0.45, 0, 0.2, 1);
 
-  --shell: min(88vw, 1320px);
-  --header-height: 92px;
+  --shell: min(86vw, 1180px);
+  --header-height: 84px;
   --border-subtle: 1px solid rgba(216, 186, 149, 0.17);
   --shadow-media: 0 28px 80px rgba(2, 12, 10, 0.28);
 }
@@ -49,4 +49,3 @@
     --header-height: 72px;
   }
 }
-

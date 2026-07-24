@@ -78,8 +78,8 @@ export function instagramPage() {
             <p class="instagram-profile__lead">
               Pratos, drinks e uma atmosfera feita para ficar.
             </p>
-            <div class="instagram-profile__status">
-              <span aria-hidden="true"></span>
+            <div class="instagram-profile__status" data-instagram-status>
+              <span data-instagram-status-dot aria-hidden="true"></span>
               ${SITE.hours}
             </div>
           </header>

@@ -4,32 +4,36 @@
 }
 
 .reveal.will-reveal {
-  opacity: 0.001;
-  transform: translate3d(0, 24px, 0);
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
   transition:
-    opacity var(--motion-slow) var(--ease-editorial),
-    transform var(--motion-slow) var(--ease-editorial);
+    opacity 980ms var(--ease-editorial),
+    transform 980ms var(--ease-editorial);
 }
 
-.is-ready .hero-stage__light {
-  animation: hero-light 1450ms var(--ease-editorial) 120ms both;
+.editorial-media.reveal.will-reveal {
+  clip-path: inset(5% 8% 5% 8%);
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.975);
+}
+
+.editorial-media.reveal.is-visible {
+  clip-path: inset(0);
+  opacity: 1;
+  transform: none;
+  transition:
+    clip-path 1150ms var(--ease-editorial),
+    opacity 900ms var(--ease-editorial),
+    transform 1150ms var(--ease-editorial);
 }
 
 .is-ready .hero-stage__service {
-  animation: hero-frame 1450ms var(--ease-editorial) 140ms both;
-}
-
-.is-ready .hero-stage__room {
-  animation: hero-support 880ms var(--ease-editorial) 720ms both;
-}
-
-.is-ready .hero-stage__salon {
-  animation: hero-support 880ms var(--ease-editorial) 880ms both;
+  animation: hero-frame 1550ms var(--ease-editorial) 120ms both;
 }
 
 .is-ready .site-header {
@@ -40,8 +44,23 @@
   animation: hero-copy-in 760ms var(--ease-editorial) 180ms both;
 }
 
-.is-ready .hero__copy h1 {
-  animation: hero-copy-in 940ms var(--ease-editorial) 260ms both;
+.motion-word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
+.motion-letter {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.is-ready .hero__copy h1 .motion-letter {
+  animation: hero-letter-in 920ms var(--ease-editorial) both;
+  animation-delay: calc(210ms + var(--letter-delay));
 }
 
 .is-ready .hero__lead {
@@ -58,12 +77,12 @@
 
 .atmosphere-composition__support.is-visible,
 .bar-composition__drink.is-visible {
-  transition-delay: 120ms;
+  transition-delay: 140ms;
 }
 
 .atmosphere-composition__detail.is-visible,
 .bar-composition__wine.is-visible {
-  transition-delay: 240ms;
+  transition-delay: 280ms;
 }
 
 .atmosphere-composition__note.is-visible,
@@ -71,46 +90,57 @@
   transition-delay: 340ms;
 }
 
-.table-story--video.is-visible .table-story__main,
-.bar-composition__video.is-visible {
-  animation: hero-frame 1050ms var(--ease-editorial) both;
+.reveal.will-reveal .motion-letter {
+  opacity: 0.06;
+  transform: translate3d(0, 104%, 0) rotate(1.5deg);
 }
 
-.table-story--video.is-visible .table-story__support {
-  animation: hero-support 760ms var(--ease-editorial) 320ms both;
+.reveal.is-visible .motion-letter {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 680ms var(--ease-editorial),
+    transform 880ms var(--ease-editorial);
+  transition-delay: calc(90ms + var(--letter-delay));
 }
 
-@keyframes hero-light {
-  from {
-    opacity: 0;
-    transform: translate3d(-30vw, 0, 0);
-  }
-  72% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    opacity: 0.72;
-    transform: translate3d(0, 0, 0);
-  }
+.table-story.will-reveal .table-story__main,
+.table-story.will-reveal .table-story__support {
+  opacity: 0.04;
+  clip-path: inset(0 18% 0 18%);
+  transform: translate3d(0, 28px, 0) scale(0.975);
+}
+
+.table-story.is-visible .table-story__main {
+  animation: section-media-in 1150ms var(--ease-editorial) 80ms both;
+}
+
+.table-story.is-visible .table-story__support {
+  animation: section-media-in 1050ms var(--ease-editorial) 280ms both;
 }
 
 @keyframes hero-frame {
   from {
-    clip-path: inset(0 48% 0 48%);
+    clip-path: inset(3% 34% 3% 34%);
+    filter: blur(4px);
+    opacity: 0.42;
   }
   to {
     clip-path: inset(0);
+    filter: none;
+    opacity: 1;
   }
 }
 
-@keyframes hero-support {
+@keyframes section-media-in {
   from {
-    opacity: 0.05;
-    transform: translate3d(-32px, 18px, 0) scale(0.965);
+    opacity: 0.04;
+    clip-path: inset(0 18% 0 18%);
+    transform: translate3d(0, 28px, 0) scale(0.975);
   }
   to {
     opacity: 1;
+    clip-path: inset(0);
     transform: none;
   }
 }
@@ -139,6 +169,17 @@
   }
 }
 
+@keyframes hero-letter-in {
+  from {
+    opacity: 0.2;
+    transform: translate3d(0, 82%, 0) rotate(1.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 html {
   opacity: 1;
   transition: opacity 240ms var(--ease-ui);
@@ -146,6 +187,14 @@ html {
 
 html.is-leaving {
   opacity: 0.01;
+}
+
+html.is-leaving [data-page] {
+  filter: blur(3px);
+  transform: scale(0.992);
+  transition:
+    filter 240ms var(--ease-ui),
+    transform 240ms var(--ease-ui);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -162,6 +211,12 @@ html.is-leaving {
 
   .reveal,
   .reveal.will-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .motion-letter,
+  .reveal.will-reveal .motion-letter {
     opacity: 1;
     transform: none;
   }

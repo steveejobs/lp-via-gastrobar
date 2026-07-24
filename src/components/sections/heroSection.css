@@ -206,7 +206,7 @@
     box-shadow: none;
   }
 
-  .hero-stage__service {
+  .hero-stage .hero-stage__service {
     top: 0;
     right: auto;
     bottom: 0;
@@ -264,7 +264,7 @@
     min-height: 348px;
   }
 
-  .hero-stage__service {
+  .hero-stage .hero-stage__service {
     max-width: calc(100vw - 44px);
   }
 }
