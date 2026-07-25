@@ -22,6 +22,10 @@
   background: transparent;
 }
 
+.bar-composition__video .smart-video {
+  object-position: center 38%;
+}
+
 .bar-composition__video::before {
   content: "";
   position: absolute;
