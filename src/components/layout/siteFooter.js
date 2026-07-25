@@ -34,6 +34,13 @@ export function siteFooter() {
           ${externalAttributes("Instagram do Via Gastrobar")}
         >Instagram</a>
       </nav>
+      <p class="site-footer__credit">
+        <a
+          href="${SITE.creator.whatsapp}"
+          data-track="credito_autor"
+          ${externalAttributes("Falar com Gabriel R. pelo WhatsApp sobre o site do Via Gastrobar")}
+        >${SITE.creator.label}</a>
+      </p>
     </footer>
   `;
 }

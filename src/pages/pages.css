@@ -728,6 +728,24 @@
   text-decoration: none;
 }
 
+.instagram-footer .instagram-footer__credit {
+  margin-top: 0.85rem;
+  color: inherit;
+}
+
+.instagram-footer__credit a {
+  min-height: 0;
+  color: rgba(255, 249, 239, 0.34);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  transition: color var(--motion-fast) ease;
+}
+
+.instagram-footer__credit a:hover,
+.instagram-footer__credit a:focus-visible {
+  color: rgba(255, 249, 239, 0.7);
+}
+
 [data-instagram-reveal] {
   opacity: 0;
   transform: translate3d(0, 38px, 0);

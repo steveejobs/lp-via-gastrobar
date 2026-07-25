@@ -1,5 +1,7 @@
 const WHATSAPP_MESSAGE =
   "Olá! Vim pelo site do Via Gastrobar e gostaria de reservar uma mesa.";
+const CREATOR_WHATSAPP_MESSAGE =
+  "Olá, Gabriel! Vim pelo site do Via Gastrobar e gostaria de falar sobre o projeto.";
 
 export const SITE = {
   name: "Via Gastrobar",
@@ -8,6 +10,12 @@ export const SITE = {
   reference: "Ao lado do Via Filadélfia",
   hours: "Todos os dias, a partir das 18h",
   phoneLabel: "(63) 99139-4000",
+  creator: {
+    label: "Feito por Gabriel R.",
+    whatsapp: `https://wa.me/5563991081785?text=${encodeURIComponent(
+      CREATOR_WHATSAPP_MESSAGE,
+    )}`,
+  },
   links: {
     whatsapp: `https://api.whatsapp.com/send?phone=5563991394000&text=${encodeURIComponent(
       WHATSAPP_MESSAGE,

@@ -330,6 +330,13 @@ export function instagramPage() {
                 Instagram
               </a>
             </nav>
+            <p class="instagram-footer__credit">
+              <a
+                href="${SITE.creator.whatsapp}"
+                data-track="credito_autor"
+                ${externalAttributes("Falar com Gabriel R. pelo WhatsApp sobre o site do Via Gastrobar")}
+              >${SITE.creator.label}</a>
+            </p>
           </footer>
         </div>
       </main>
