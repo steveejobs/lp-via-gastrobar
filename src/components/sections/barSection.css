@@ -22,10 +22,6 @@
   background: transparent;
 }
 
-.bar-composition__video .smart-video {
-  object-position: center 74%;
-}
-
 .bar-composition__video::before {
   content: "";
   position: absolute;
@@ -50,6 +46,10 @@
 
 .bar-composition__detail-video .smart-video-frame {
   background: transparent;
+}
+
+.bar-composition__detail-video .smart-video {
+  object-position: center 74%;
 }
 
 .bar-composition img,
