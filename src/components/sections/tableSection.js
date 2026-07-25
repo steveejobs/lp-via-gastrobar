@@ -18,7 +18,6 @@ function storyMedia(media, delay = 0) {
   if (media.type === "sequence") {
     return responsiveImageSequence(media.images, {
       label: media.label,
-      transition: "plate",
       delay,
     });
   }
@@ -104,14 +103,12 @@ export function tableSection() {
           <figure class="sea-composition__primary editorial-media">
             ${responsiveImageSequence(seaPrimary, {
               label: "Seleção de pratos do mar",
-              transition: "editorial",
             })}
           </figure>
           <figure class="sea-composition__support editorial-media">
             ${responsiveImageSequence(seaSupport, {
               label: "Detalhes dos pratos do mar",
               offset: 1,
-              transition: "editorial",
             })}
           </figure>
         </div>

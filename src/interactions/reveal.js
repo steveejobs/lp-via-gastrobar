@@ -126,22 +126,22 @@ export function initializeMediaSequences() {
 
   const visibleSequences = new Set();
   const transitionTimers = new WeakMap();
-  let sequenceStep = 0;
+  const cycleTimers = new WeakMap();
+  const sequenceSteps = new WeakMap();
   const showSequenceStep = (sequence, step) => {
     const items = [...sequence.querySelectorAll(".media-sequence__item")];
-    if (!items.length) return;
+    if (!items.length) return false;
 
     const offset = Number(sequence.dataset.sequenceOffset || 0);
     const nextIndex = (step + offset) % items.length;
     const nextItem = items[nextIndex];
-    if (!nextItem.complete || nextItem.naturalWidth === 0) return;
+    if (!nextItem.complete || nextItem.naturalWidth === 0) return false;
 
     const currentItem = items.find((item) =>
       item.classList.contains("is-sequence-current"),
     );
-    if (currentItem === nextItem) return;
+    if (currentItem === nextItem) return false;
 
-    const transition = sequence.dataset.sequenceTransition || "dissolve";
     const delay = Number(sequence.dataset.sequenceDelay || 0);
     window.clearTimeout(transitionTimers.get(sequence));
     items.forEach((item) => {
@@ -152,8 +152,6 @@ export function initializeMediaSequences() {
       currentItem.classList.add("is-sequence-leaving");
       nextItem.classList.add("is-sequence-entering");
       sequence.classList.remove("is-sequence-transitioning");
-      sequence.classList.toggle("is-sequence-reverse", nextIndex % 2 === 0);
-      sequence.dataset.activeTransition = transition;
       sequence.getBoundingClientRect();
       sequence.classList.add("is-sequence-transitioning");
     }
@@ -170,6 +168,7 @@ export function initializeMediaSequences() {
       }, 1700 + delay);
       transitionTimers.set(sequence, timer);
     }
+    return true;
   };
 
   const updateSequence = (sequence) => {
@@ -179,14 +178,31 @@ export function initializeMediaSequences() {
     );
   };
 
+  const scheduleSequence = (sequence) => {
+    window.clearTimeout(cycleTimers.get(sequence));
+    if (!visibleSequences.has(sequence) || document.hidden) return;
+
+    const timer = window.setTimeout(() => {
+      const nextStep = (sequenceSteps.get(sequence) || 0) + 1;
+      if (showSequenceStep(sequence, nextStep)) {
+        sequenceSteps.set(sequence, nextStep);
+      }
+      scheduleSequence(sequence);
+    }, 6000);
+    cycleTimers.set(sequence, timer);
+  };
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          visibleSequences.add(entry.target);
-          showSequenceStep(entry.target, sequenceStep);
+          if (!visibleSequences.has(entry.target)) {
+            visibleSequences.add(entry.target);
+            scheduleSequence(entry.target);
+          }
         } else {
           visibleSequences.delete(entry.target);
+          window.clearTimeout(cycleTimers.get(entry.target));
         }
         updateSequence(entry.target);
       });
@@ -219,15 +235,14 @@ export function initializeMediaSequences() {
     });
     observer.observe(sequence);
   });
-  window.setInterval(() => {
-    if (document.hidden) return;
-    sequenceStep += 1;
-    visibleSequences.forEach((sequence) =>
-      showSequenceStep(sequence, sequenceStep),
-    );
-  }, 6000);
-
   document.addEventListener("visibilitychange", () => {
-    sequences.forEach(updateSequence);
+    sequences.forEach((sequence) => {
+      updateSequence(sequence);
+      if (document.hidden) {
+        window.clearTimeout(cycleTimers.get(sequence));
+      } else if (visibleSequences.has(sequence)) {
+        scheduleSequence(sequence);
+      }
+    });
   });
 }

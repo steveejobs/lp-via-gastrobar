@@ -46,7 +46,7 @@ export function responsiveImageSequence(
     className = "",
     label = "Sequência de imagens",
     offset = 0,
-    transition = "dissolve",
+    transition = "editorial",
     delay = 0,
   } = {},
 ) {

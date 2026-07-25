@@ -26,14 +26,12 @@ export function wineSection() {
         <figure class="wine-composition__service editorial-media reveal">
           ${responsiveImageSequence(MEDIA.wine.service, {
             label: "Serviço de vinhos no Via Gastrobar",
-            transition: "vertical",
           })}
         </figure>
 
         <figure class="wine-composition__detail editorial-media reveal">
           ${responsiveImageSequence(MEDIA.wine.details, {
             label: "Taça e garrafas selecionadas",
-            transition: "vertical",
             delay: 180,
           })}
         </figure>

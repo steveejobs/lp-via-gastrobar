@@ -31,7 +31,6 @@ export function barSection() {
         <figure class="bar-composition__drink editorial-media reveal" data-pointer-media>
           ${responsiveImageSequence(MEDIA.bar.drinks, {
             label: "Drinks servidos no Via Gastrobar",
-            transition: "fluid",
           })}
         </figure>
         <figure class="bar-composition__detail-video editorial-media reveal">

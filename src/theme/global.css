@@ -162,6 +162,46 @@
   transition: none;
 }
 
+.media-sequence[data-sequence-transition="editorial"]
+  .media-sequence__item.is-sequence-entering {
+  animation: sequence-editorial-enter 1450ms var(--ease-editorial) both;
+  animation-delay: var(--sequence-delay, 0ms);
+}
+
+.media-sequence[data-sequence-transition="editorial"]
+  .media-sequence__item.is-sequence-leaving {
+  animation: sequence-editorial-leave 1450ms var(--ease-editorial) both;
+  animation-delay: var(--sequence-delay, 0ms);
+}
+
+@keyframes sequence-editorial-enter {
+  from {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0.72;
+    transform: translateY(2%) scale(1.025);
+  }
+
+  to {
+    clip-path: inset(0);
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sequence-editorial-leave {
+  from {
+    clip-path: inset(0);
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0.62;
+    transform: translateY(-1%) scale(0.99);
+  }
+}
+
 .media-sequence[data-sequence-transition="dissolve"]
   .media-sequence__item.is-sequence-entering {
   animation: sequence-dissolve-enter 1380ms var(--ease-liquid) both;
@@ -205,18 +245,6 @@
 .media-sequence[data-sequence-transition="curtain"]
   .media-sequence__item.is-sequence-leaving {
   animation: sequence-curtain-leave 1450ms var(--ease-editorial) both;
-  animation-delay: var(--sequence-delay, 0ms);
-}
-
-.media-sequence[data-sequence-transition="plate"]
-  .media-sequence__item.is-sequence-entering {
-  animation: sequence-plate-enter 1480ms var(--ease-liquid) both;
-  animation-delay: var(--sequence-delay, 0ms);
-}
-
-.media-sequence[data-sequence-transition="plate"]
-  .media-sequence__item.is-sequence-leaving {
-  animation: sequence-plate-leave 1480ms var(--ease-liquid) both;
   animation-delay: var(--sequence-delay, 0ms);
 }
 
@@ -359,35 +387,6 @@
     opacity: 0.38;
     transform: scale(0.99);
     filter: brightness(0.84);
-  }
-}
-
-@keyframes sequence-plate-enter {
-  from {
-    clip-path: circle(0% at 50% 54%);
-    opacity: 0.55;
-    transform: scale(1.075);
-    filter: saturate(0.78) brightness(0.82);
-  }
-
-  to {
-    clip-path: circle(75% at 50% 54%);
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
-@keyframes sequence-plate-leave {
-  from {
-    opacity: 1;
-    transform: none;
-  }
-
-  to {
-    opacity: 0.28;
-    transform: scale(0.96);
-    filter: brightness(0.78);
   }
 }
 
