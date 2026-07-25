@@ -81,8 +81,8 @@ export function initializeReveals() {
   };
 
   const stateFromBounds = (bounds) => {
-    if (bounds.bottom <= window.innerHeight * 0.08) return "after";
-    if (bounds.top >= window.innerHeight * 0.92) return "before";
+    if (bounds.bottom <= window.innerHeight * 0.03) return "after";
+    if (bounds.top >= window.innerHeight * 0.8) return "before";
     return "visible";
   };
 
@@ -100,7 +100,7 @@ export function initializeReveals() {
       });
     },
     {
-      rootMargin: "-8% 0px -8% 0px",
+      rootMargin: "-3% 0px -20% 0px",
       threshold: [0, 0.08, 0.3],
     },
   );

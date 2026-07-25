@@ -158,25 +158,6 @@
   transition: transform var(--motion-standard) var(--ease-ui);
 }
 
-.editorial-media::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
-    rgba(240, 223, 200, 0.1),
-    transparent 35%
-  );
-  opacity: 0;
-  transition: opacity var(--motion-standard) ease;
-}
-
-.editorial-media:hover::after {
-  opacity: 1;
-}
-
 .editorial-media img,
 .editorial-media video {
   width: 100%;
@@ -189,8 +170,8 @@
 
 .editorial-media:hover > img,
 .editorial-media:hover > video {
-  transform: scale(1.018);
-  filter: contrast(1.025);
+  transform: none;
+  filter: contrast(1.018) saturate(1.012);
 }
 
 @media (max-width: 560px) {

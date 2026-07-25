@@ -8,8 +8,6 @@ export function initializePointerInteractions() {
       const bounds = element.getBoundingClientRect();
       const x = (event.clientX - bounds.left) / bounds.width;
       const y = (event.clientY - bounds.top) / bounds.height;
-      element.style.setProperty("--pointer-x", `${Math.round(x * 100)}%`);
-      element.style.setProperty("--pointer-y", `${Math.round(y * 100)}%`);
       element.style.setProperty("--tilt-x", `${(0.5 - y) * 1.2}deg`);
       element.style.setProperty("--tilt-y", `${(x - 0.5) * 1.2}deg`);
     });
@@ -33,4 +31,3 @@ export function initializePointerInteractions() {
     });
   });
 }
-
