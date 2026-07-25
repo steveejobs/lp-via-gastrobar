@@ -294,18 +294,96 @@ export const HOME_MEDIA = {
         ],
         label: "Preparo de um prato do Via Gastrobar",
       },
-      support: MEDIA.tableStories[1].support,
+      support: {
+        type: "sequence",
+        label: "Preparo completo do prato servido no vídeo",
+        images: [
+          {
+            src: "/media/plate-lamb-01.webp",
+            width: 1440,
+            height: 1800,
+            alt: "Prato de cordeiro servido sobre purê",
+          },
+          {
+            src: "/media/plate-lamb-02.webp",
+            width: 1440,
+            height: 1800,
+            alt: "Cordeiro acompanhado de arroz",
+          },
+          MEDIA.tableStories[1].support.images[1],
+          {
+            src: "/media/plate-lamb-04.webp",
+            width: 1440,
+            height: 1800,
+            alt: "Prato de cordeiro finalizado e servido",
+          },
+          MEDIA.tableStories[1].support.images[0],
+        ],
+      },
     },
     {
       ...MEDIA.tableStories[2],
       copy:
-        "Do ponto certo ao último detalhe, cada prato chega à mesa com sabor, cuidado e presença.",
+        "No ponto certo, com sabor marcante e cuidado em cada detalhe.",
+      main: {
+        type: "sequence",
+        label: "Seleção de pratos servidos no Via Gastrobar",
+        images: [
+          {
+            src: "/media/plate-salmon-01.webp",
+            width: 1440,
+            height: 1440,
+            alt: "Peixe servido com risoto",
+          },
+          ...MEDIA.tableStories[2].main.images,
+          {
+            src: "/media/plate-service-curry.webp",
+            width: 1320,
+            height: 1320,
+            alt: "Prato cremoso servido com arroz",
+          },
+          {
+            src: "/media/plate-service-risotto.webp",
+            width: 1320,
+            height: 1320,
+            alt: "Risoto finalizado e servido",
+          },
+          {
+            src: "/media/plate-service-fish.webp",
+            width: 1320,
+            height: 1320,
+            alt: "Peixe servido com legumes",
+          },
+        ],
+      },
       support: {
         type: "sequence",
-        label: "Outros pratos servidos no Via Gastrobar",
+        label: "Outro prato servido em diferentes ângulos",
         images: [
-          MEDIA.tableStories[0].main.images[2],
-          MEDIA.tableStories[1].support.images[1],
+          {
+            src: "/media/plate-service-course-01.webp",
+            width: 1440,
+            height: 1800,
+            alt: "Prato servido com risoto e tomates",
+          },
+          {
+            src: "/media/plate-service-course-02.webp",
+            width: 1440,
+            height: 1800,
+            alt: "Detalhe do prato servido",
+          },
+          {
+            src: "/media/plate-service-course-03.webp",
+            width: 1440,
+            height: 1800,
+            alt: "Prato completo visto de cima",
+          },
+          {
+            src: "/media/plate-service-course-04.webp",
+            width: 1440,
+            height: 1800,
+            alt: "Composição completa do prato servido",
+          },
         ],
       },
     },

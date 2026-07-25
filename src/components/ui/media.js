@@ -118,10 +118,12 @@ export function smartVideo({
     playlist.length > 1
       ? `data-video-playlist="${playlist.join("|")}"`
       : "";
-  const segment =
-    loopEnd !== undefined
-      ? `data-loop-start="${loopStart || 0}" data-loop-end="${loopEnd}"`
-      : "";
+  const segment = [
+    loopStart !== undefined ? `data-loop-start="${loopStart}"` : "",
+    loopEnd !== undefined ? `data-loop-end="${loopEnd}"` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
   const posterFilename = poster
     ?.split("/")
     .at(-1)

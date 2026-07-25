@@ -54,6 +54,13 @@ export function initializeVideos() {
     }
   };
 
+  const beginAtConfiguredStart = (video) => {
+    const start = Number(video.dataset.loopStart || 0);
+    if (start > 0 && video.currentTime < start) {
+      video.currentTime = Math.min(start, Math.max(0, video.duration - 0.05));
+    }
+  };
+
   const updatePlayback = () => {
     videos.forEach((video) => {
       const canPlay =
@@ -96,6 +103,9 @@ export function initializeVideos() {
     }
 
     video.addEventListener("timeupdate", () => resetSegment(video));
+    video.addEventListener("loadedmetadata", () =>
+      beginAtConfiguredStart(video),
+    );
     video.addEventListener("ended", () => {
       const videoPlaylist = getPlaylist(video);
       if (videoPlaylist.length > 1) {

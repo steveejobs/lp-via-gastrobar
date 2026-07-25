@@ -26,6 +26,7 @@ export function barSection() {
           ${smartVideo({
             src: MEDIA.bar.champagneVideo,
             label: "Champagne servido no Via Gastrobar",
+            loopStart: 1.5,
           })}
         </figure>
         <figure class="bar-composition__drink editorial-media reveal" data-pointer-media>
