@@ -14,7 +14,10 @@
 
 .wine-composition {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(0, 1.15fr)
+    minmax(240px, 0.7fr);
   grid-template-rows: auto auto;
   gap: clamp(0.8rem, 1.5vw, 1.3rem);
 }

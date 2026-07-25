@@ -9,6 +9,35 @@ html {
   overflow-x: clip;
   background: var(--color-green-800);
   scroll-behavior: smooth;
+  scrollbar-color: rgba(216, 186, 149, 0.78) var(--color-green-900);
+  scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--color-green-900);
+}
+
+html::-webkit-scrollbar-thumb {
+  min-height: 64px;
+  border: 3px solid var(--color-green-900);
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    rgba(216, 186, 149, 0.58),
+    rgba(216, 186, 149, 0.9)
+  );
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-400);
+}
+
+html::-webkit-scrollbar-corner {
+  background: var(--color-green-900);
 }
 
 body {
@@ -64,4 +93,3 @@ button:focus-visible {
   outline: 2px solid var(--color-cream-100);
   outline-offset: 4px;
 }
-
