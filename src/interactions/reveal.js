@@ -141,16 +141,19 @@ export function initializeMediaSequences() {
     );
     if (currentItem === nextItem) return;
 
-    const editorial = sequence.dataset.sequenceTransition === "editorial";
+    const transition = sequence.dataset.sequenceTransition || "dissolve";
+    const delay = Number(sequence.dataset.sequenceDelay || 0);
     window.clearTimeout(transitionTimers.get(sequence));
     items.forEach((item) => {
       item.classList.remove("is-sequence-entering", "is-sequence-leaving");
     });
 
-    if (editorial && currentItem) {
+    if (currentItem) {
       currentItem.classList.add("is-sequence-leaving");
       nextItem.classList.add("is-sequence-entering");
       sequence.classList.remove("is-sequence-transitioning");
+      sequence.classList.toggle("is-sequence-reverse", nextIndex % 2 === 0);
+      sequence.dataset.activeTransition = transition;
       sequence.getBoundingClientRect();
       sequence.classList.add("is-sequence-transitioning");
     }
@@ -158,13 +161,13 @@ export function initializeMediaSequences() {
     items.forEach((item) => item.classList.remove("is-sequence-current"));
     nextItem.classList.add("is-sequence-current");
 
-    if (editorial) {
+    if (currentItem) {
       const timer = window.setTimeout(() => {
         items.forEach((item) => {
           item.classList.remove("is-sequence-entering", "is-sequence-leaving");
         });
         sequence.classList.remove("is-sequence-transitioning");
-      }, 1500);
+      }, 1700 + delay);
       transitionTimers.set(sequence, timer);
     }
   };

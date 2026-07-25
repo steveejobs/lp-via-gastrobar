@@ -6,7 +6,7 @@ import {
   smartVideo,
 } from "../ui/media.js";
 
-function storyMedia(media) {
+function storyMedia(media, delay = 0) {
   if (media.type === "video") {
     return smartVideo({
       src: media.src,
@@ -18,6 +18,8 @@ function storyMedia(media) {
   if (media.type === "sequence") {
     return responsiveImageSequence(media.images, {
       label: media.label,
+      transition: "plate",
+      delay,
     });
   }
 
@@ -53,7 +55,7 @@ function tableStory(story, index) {
         story.support
           ? `
             <figure class="table-story__support editorial-media">
-              ${storyMedia(story.support)}
+              ${storyMedia(story.support, 180)}
             </figure>
           `
           : ""

@@ -177,12 +177,14 @@
 
 .media-sequence[data-sequence-transition="editorial"].is-sequence-transitioning::after {
   animation: sea-sequence-sweep 1450ms var(--ease-editorial) both;
+  animation-delay: var(--sequence-delay, 0ms);
 }
 
 .media-sequence[data-sequence-transition="editorial"]
   .media-sequence__item.is-sequence-entering {
   z-index: 2;
   animation: sea-sequence-enter 1450ms var(--ease-editorial) both;
+  animation-delay: var(--sequence-delay, 0ms);
 }
 
 .media-sequence[data-sequence-transition="editorial"]
@@ -190,6 +192,7 @@
   z-index: 1;
   opacity: 1;
   animation: sea-sequence-leave 1450ms var(--ease-editorial) both;
+  animation-delay: var(--sequence-delay, 0ms);
 }
 
 @keyframes sea-sequence-enter {

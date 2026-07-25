@@ -24,6 +24,7 @@ export function atmosphereSection() {
         >
           ${responsiveImageSequence(main, {
             label: "Mesas e salão do Via Gastrobar",
+            transition: "curtain",
           })}
         </figure>
         <figure
@@ -32,6 +33,8 @@ export function atmosphereSection() {
         >
           ${responsiveImageSequence(support, {
             label: "Detalhes do ambiente e do bar",
+            transition: "curtain",
+            delay: 160,
           })}
         </figure>
         <figure class="atmosphere-composition__detail editorial-media reveal">

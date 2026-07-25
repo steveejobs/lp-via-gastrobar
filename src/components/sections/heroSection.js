@@ -65,11 +65,14 @@ export function heroSection() {
         <figure class="hero-stage__room">
           ${responsiveImageSequence(MEDIA.hero.room, {
             label: "Bar e adega do Via Gastrobar",
+            transition: "cinematic",
           })}
         </figure>
         <figure class="hero-stage__salon">
           ${responsiveImageSequence(MEDIA.hero.salon, {
             label: "Salão e mesas do Via Gastrobar",
+            transition: "cinematic",
+            delay: 180,
           })}
         </figure>
       </div>
